@@ -7,7 +7,7 @@ export function addReels(app: Application) {
         return Sprite.from(name);
     })
 
-    showReels(app, symbolSprites);
+    return showReels(app, symbolSprites);
 }
 
 function showReels(app: Application, symbolSprites: Sprite[]) {
@@ -18,6 +18,8 @@ function showReels(app: Application, symbolSprites: Sprite[]) {
     showSymbol(app, firstSymbol, 1)
     showSymbol(app, secondSymbol, 2)
     showSymbol(app, thirdSymbol, 3)
+
+    return [firstSymbol, secondSymbol, thirdSymbol];
 }
 
 function showSymbol(app: Application, symbolSprite: Sprite, reelIndex: number) {
