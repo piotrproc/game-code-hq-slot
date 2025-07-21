@@ -27,13 +27,14 @@ function showReels(app: Application, symbolSprites: string[]) {
 
 function showSymbol(app: Application, symbolSprite: Sprite, reelIndex: number) {
     const SCALE = 0.9;
+    const SYMBOL_HEIGHT = symbolSprite.height;
 
     symbolSprite.anchor.set(0.5);
 
     symbolSprite.scale = SCALE;
 
     symbolSprite.x = app.screen.width * (1 / 2);
-    symbolSprite.y = ((symbolSprite.height + 10) * SCALE) * reelIndex - 25;
+    symbolSprite.y = ((SYMBOL_HEIGHT + 10) * SCALE) * reelIndex - 35;
 
     app.stage.addChild(symbolSprite);
 }
