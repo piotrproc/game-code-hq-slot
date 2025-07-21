@@ -8,15 +8,15 @@ export function addReels(app: Application) {
     })
 
     return {
-        symbols: showReels(app, symbolSprites),
-        allSymbols: symbolSprites
+        allSymbols: symbolSprites,
+        symbols: showReels(app, symbolNames)
     };
 }
 
-function showReels(app: Application, symbolSprites: Sprite[]) {
-    const firstSymbol = symbolSprites[0];
-    const secondSymbol = symbolSprites[1];
-    const thirdSymbol = symbolSprites[2];
+function showReels(app: Application, symbolSprites: string[]) {
+    const firstSymbol = Sprite.from(symbolSprites[0]);
+    const secondSymbol = Sprite.from(symbolSprites[1]);
+    const thirdSymbol = Sprite.from(symbolSprites[2]);
 
     showSymbol(app, firstSymbol, 1)
     showSymbol(app, secondSymbol, 2)
