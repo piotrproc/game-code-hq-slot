@@ -11,23 +11,24 @@ export function addSpinButton(app: Application, symbolSprites: Sprite[], reels: 
     spinButton.y = app.screen.height * (4 / 5);
 
     spinButton.eventMode = 'static';
+    spinButton.cursor = 'pointer';
 
     const changingSymbols = () => changeSymbol(symbolSprites, reels);
 
-    spinButton.on('pointerdown', () => handleClick(app, changingSymbols));
+    spinButton.on('pointerdown', () => handleClick(spinButton, app, changingSymbols));
 
     app.stage.addChild(spinButton);
 }
 
-function handleClick(app: Application, changingSymbols) {
+function handleClick(spinButton: Sprite, app: Application, changingSymbols) {
     if (isSpin) {
-        isSpin = !isSpin;
-        return stopSpin(app, changingSymbols);
+        stopSpin(app, changingSymbols);
+        spinButton.tint = 0xFFFFFF;
+    } else {
+        spin(app, changingSymbols);
+        spinButton.tint = 0x808080;
     }
-    else {
-        isSpin = !isSpin;
-        return spin(app, changingSymbols)
-    }
+    isSpin = !isSpin;
 }
 
 function spin(app: Application, changingSymbols) {
