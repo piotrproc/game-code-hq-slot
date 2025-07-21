@@ -19,6 +19,7 @@ export function addSpinButton(app: Application, symbolSprites: Sprite[], reels: 
 
 function spin(symbolSprites: Sprite[], reels: Sprite[]) {
     console.log(reels);
+    symbolSprites[0].texture = reels[1].texture;
 
     // const randomSymbolIndex = Math.floor(Math.random() * (reels.length - 1));
     // symbolSprites[randomSymbolIndex] = reels[randomSymbolIndex];

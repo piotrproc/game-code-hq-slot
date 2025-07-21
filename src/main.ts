@@ -1,5 +1,5 @@
 import { Application, Assets } from "pixi.js";
-import { addSpinButton } from "./components/spinButton.ts";
+import { addSpinButton } from "./components/addSpinButton.ts";
 import { addReels } from "./components/addReels.ts";
 
 const app = new Application();
