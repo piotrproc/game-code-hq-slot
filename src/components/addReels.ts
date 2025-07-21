@@ -29,7 +29,7 @@ function showSymbol(app: Application, symbolSprite: Sprite, reelIndex: number) {
     symbolSprite.anchor.set(0.5);
 
     symbolSprite.x = app.screen.width * (1 / 2);
-    symbolSprite.y = app.screen.height * (reelIndex / 5);
+    symbolSprite.y = 155 * reelIndex - 75;
 
     app.stage.addChild(symbolSprite);
 }

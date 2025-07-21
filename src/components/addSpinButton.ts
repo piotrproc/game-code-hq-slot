@@ -1,38 +1,42 @@
-import { Application, Sprite, Texture } from "pixi.js";
+import { Application, Sprite } from "pixi.js";
 
 let isSpin = false;
 
 export function addSpinButton(app: Application, symbolSprites: Sprite[], reels: Sprite[]) {
     const spinButton = Sprite.from("spinButton");
 
-    spinButton.anchor.set(0.5);
+    styleSpinButton(app, spinButton);
 
-    spinButton.x = app.screen.width / 2;
-    spinButton.y = app.screen.height * (4 / 5);
+    const changingSymbolsCallback = () => changeSymbol(symbolSprites, reels);
 
-    spinButton.eventMode = 'static';
-    spinButton.cursor = 'pointer';
-
-    const changingSymbols = () => changeSymbol(symbolSprites, reels);
-
-    spinButton.on('pointerdown', () => handleClick(spinButton, app, changingSymbols));
+    spinButton.on('pointerdown', () => handleClick(spinButton, app, changingSymbolsCallback));
 
     app.stage.addChild(spinButton);
 }
 
-function handleClick(spinButton: Sprite, app: Application, changingSymbols) {
+function styleSpinButton(app: Application, spinButton: Sprite) {
+    spinButton.anchor.set(0.5);
+
+    spinButton.x = app.screen.width / 2;
+    spinButton.y = app.screen.height * (5 / 6);
+
+    spinButton.eventMode = 'static';
+    spinButton.cursor = 'pointer';
+}
+
+function handleClick(spinButton: Sprite, app: Application, changingSymbolsCallback) {
     if (isSpin) {
-        stopSpin(app, changingSymbols);
+        stopSpin(app, changingSymbolsCallback);
         spinButton.tint = 0xFFFFFF;
     } else {
-        spin(app, changingSymbols);
+        spin(app, changingSymbolsCallback);
         spinButton.tint = 0x808080;
     }
     isSpin = !isSpin;
 }
 
-function spin(app: Application, changingSymbols) {
-    app.ticker.add(changingSymbols)
+function spin(app: Application, changingSymbolsCallback) {
+    app.ticker.add(changingSymbolsCallback)
 }
 
 function changeSymbol(symbolSprites: Sprite[], reels: Sprite[]) {
@@ -48,7 +52,7 @@ function changeSymbol(symbolSprites: Sprite[], reels: Sprite[]) {
 }
 
 function changeSymbolSprite(symbolSprite: Sprite, newSymbol: Sprite) {
-    symbolSprite.texture = new Texture(newSymbol.texture);
+    symbolSprite.texture = newSymbol.texture;
 }
 
 function stopSpin(app: Application, changingSymbols) {
