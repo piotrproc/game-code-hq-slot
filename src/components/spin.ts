@@ -8,7 +8,7 @@ export function addSpinButtonClickHandler(app: Application, spinButton: Sprite, 
     return () => handleSpinClick(app, spinButton, changingSymbolsCallback);
 }
 
-export function handleSpinClick(app: Application, spinButton: Sprite, changingSymbolsCallback) {
+function handleSpinClick(app: Application, spinButton: Sprite, changingSymbolsCallback) {
     if (isSpin) {
         stopSpin(app, changingSymbolsCallback);
         spinButton.tint = 0xFFFFFF;
@@ -23,7 +23,7 @@ function spin(app: Application, changingSymbolsCallback) {
     app.ticker.add(changingSymbolsCallback)
 }
 
-export function changeSymbol(symbolSprites: Sprite[], reels: Sprite[]) {
+function changeSymbol(symbolSprites: Sprite[], reels: Sprite[]) {
     const randomIndexGenerator = () => Math.floor(Math.random() * reels.length)
 
     const randomIndex = randomIndexGenerator();
