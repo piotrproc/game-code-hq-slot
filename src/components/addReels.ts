@@ -1,4 +1,61 @@
-import { Application, Sprite } from "pixi.js";
+import { Application, BlurFilter, Container, ContainerChild, Sprite } from "pixi.js";
+
+type ReelProperties = {
+    container: Container<ContainerChild>,
+    symbols: Sprite[],
+    position: number,
+    previousPosition: number,
+    blur: BlurFilter,
+};
+
+export function buildReels(app: Application) {
+    // Build the reels
+    const reels: ReelProperties[] = [];
+    const reelContainer = new Container();
+
+    const symbolNames = ["SYM3", "SYM4", "SYM5", "SYM6", "SYM7"];
+
+    const REEL_WIDTH = 235;
+    const SYMBOL_SIZE = 140;
+
+    for (let i = 0; i < 1; i++) {
+        const rc = new Container();
+
+        rc.x = i * REEL_WIDTH;
+        reelContainer.addChild(rc);
+
+        const reel: ReelProperties = {
+            container: rc,
+            symbols: [] as Sprite[],
+            position: 0,
+            previousPosition: 0,
+            blur: new BlurFilter(),
+        };
+
+        reel.blur.blurX = 0;
+        reel.blur.blurY = 0;
+        rc.filters = [reel.blur];
+
+        // Build the symbols
+        for (let j = 0; j < 3; j++) {
+            // const symbol = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
+            const symbol = Sprite.from(symbolNames[Math.floor(Math.random() * symbolNames.length)]);
+            // Scale the symbol to fit symbol area.
+
+            symbol.anchor.set(0.5);
+
+            symbol.y = j * SYMBOL_SIZE + 100;
+            symbol.scale.x = symbol.scale.y = Math.min(SYMBOL_SIZE / symbol.width, SYMBOL_SIZE / symbol.height);
+            symbol.x = app.screen.width * (1 / 2);
+            reel.symbols.push(symbol);
+            rc.addChild(symbol);
+        }
+        reels.push(reel);
+    }
+    app.stage.addChild(reelContainer);
+
+    return {reelContainer, reels}
+}
 
 export function addReels(app: Application) {
     const symbolNames = ["SYM3", "SYM4", "SYM5", "SYM6", "SYM7"];

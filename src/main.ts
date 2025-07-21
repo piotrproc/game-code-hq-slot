@@ -1,6 +1,6 @@
 import { Application, Assets } from "pixi.js";
 import { addSpinButton } from "./components/addSpinButton.ts";
-import { addReels } from "./components/addReels.ts";
+import { addReels, buildReels } from "./components/addReels.ts";
 
 const app = new Application();
 
@@ -26,6 +26,8 @@ async function preload() {
     await setup();
     await preload();
 
-    const reels = addReels(app);
-    addSpinButton(app, reels.symbols, reels.allSymbols);
+
+    buildReels(app);
+    // const reels = addReels(app);
+    // addSpinButton(app, reels.symbols, reels.allSymbols);
 })();
