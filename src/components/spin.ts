@@ -13,13 +13,13 @@ function handleSpinClick(app: Application, spinButton: Sprite, changingSymbolsCa
         stopSpin(app, changingSymbolsCallback);
         spinButton.tint = 0xFFFFFF;
     } else {
-        spin(app, changingSymbolsCallback);
+        startSpin(app, changingSymbolsCallback);
         spinButton.tint = 0x808080;
     }
     isSpin = !isSpin;
 }
 
-function spin(app: Application, changingSymbolsCallback) {
+function startSpin(app: Application, changingSymbolsCallback) {
     app.ticker.add(changingSymbolsCallback)
 }
 
