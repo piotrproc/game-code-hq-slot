@@ -1,6 +1,6 @@
 import { Application, BlurFilter, Container, ContainerChild, Sprite } from "pixi.js";
 
-type ReelProperties = {
+export type ReelProperties = {
     container: Container<ContainerChild>,
     symbols: Sprite[],
     position: number,
@@ -8,15 +8,14 @@ type ReelProperties = {
     blur: BlurFilter,
 };
 
+export const SYMBOL_NAMES = ["SYM3", "SYM4", "SYM5", "SYM6", "SYM7"];
+export const REEL_WIDTH = 235;
+export const SYMBOL_SIZE = 140;
+
 export function buildReels(app: Application) {
     // Build the reels
     const reels: ReelProperties[] = [];
     const reelContainer = new Container();
-
-    const symbolNames = ["SYM3", "SYM4", "SYM5", "SYM6", "SYM7"];
-
-    const REEL_WIDTH = 235;
-    const SYMBOL_SIZE = 140;
 
     for (let i = 0; i < 1; i++) {
         const rc = new Container();
@@ -39,7 +38,7 @@ export function buildReels(app: Application) {
         // Build the symbols
         for (let j = 0; j < 3; j++) {
             // const symbol = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
-            const symbol = Sprite.from(symbolNames[Math.floor(Math.random() * symbolNames.length)]);
+            const symbol = Sprite.from(SYMBOL_NAMES[Math.floor(Math.random() * SYMBOL_NAMES.length)]);
             // Scale the symbol to fit symbol area.
 
             symbol.anchor.set(0.5);
