@@ -26,6 +26,6 @@ async function preload() {
     await setup();
     await preload();
 
-    const symbols = addReels(app);
-    addSpinButton(app, symbols);
+    const reels = addReels(app);
+    addSpinButton(app, reels.symbols, reels.allSymbols);
 })();

@@ -7,7 +7,10 @@ export function addReels(app: Application) {
         return Sprite.from(name);
     })
 
-    return showReels(app, symbolSprites);
+    return {
+        symbols: showReels(app, symbolSprites),
+        allSymbols: symbolSprites
+    };
 }
 
 function showReels(app: Application, symbolSprites: Sprite[]) {

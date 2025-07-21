@@ -1,6 +1,6 @@
 import { Application, Sprite } from "pixi.js";
 
-export function addSpinButton(app: Application, symbolSprites: Sprite[]) {
+export function addSpinButton(app: Application, symbolSprites: Sprite[], reels: Sprite[]) {
     const spinButton = Sprite.from("spinButton");
 
     spinButton.anchor.set(0.5);
@@ -11,12 +11,15 @@ export function addSpinButton(app: Application, symbolSprites: Sprite[]) {
 
     spinButton.eventMode = 'static';
     spinButton.on('pointerdown', () => {
-        spin(symbolSprites);
+        spin(symbolSprites, reels);
     });
 
     app.stage.addChild(spinButton);
 }
 
-function spin (symbolSprites: Sprite[]) {
-    console.log(symbolSprites[0]);
+function spin(symbolSprites: Sprite[], reels: Sprite[]) {
+    console.log(reels);
+
+    // const randomSymbolIndex = Math.floor(Math.random() * (reels.length - 1));
+    // symbolSprites[randomSymbolIndex] = reels[randomSymbolIndex];
 }
