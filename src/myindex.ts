@@ -55,10 +55,10 @@ import {
     const reels = [];
     const reelContainer = new Container();
 
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < 3; i++) {
         const rc = new Container();
 
-        rc.x = i * REEL_WIDTH;
+        rc.y = i * REEL_WIDTH;
         // rc.y = SYMBOL_SIZE;
         reelContainer.addChild(rc);
 
@@ -188,8 +188,7 @@ import {
                 const prevy = s.x;
 
                 s.x = ((r.position + j) % (r.symbols.length)) * SYMBOL_SIZE - SYMBOL_SIZE;
-                // console.log(prevy)
-                // console.log(s.x)
+
                 if (s.x < 0 && prevy > SYMBOL_SIZE) {
                     // Detect going over and swap a texture.
                     // This should in proper product be determined from some logical reel.
