@@ -42,12 +42,12 @@ export function addReels(app: Application, slotTextures) {
 
     // Build top & bottom covers and position reelContainer
     reelContainer.y = (app.screen.height - SYMBOL_SIZE * 3) / 2;
-    reelContainer.x = Math.round(app.screen.width - SYMBOL_SIZE * 5);
+    reelContainer.x = Math.round((app.screen.width - 2 * SYMBOL_SIZE) / 2);
 
     return {reels};
 }
 
-export function spinReels(app: Application, reels, slotTextures) {
+export function addReelsSpinningHandler(app: Application, reels, slotTextures) {
     // Listen for animate update.
     app.ticker.add(() => {
         // Update the slots.

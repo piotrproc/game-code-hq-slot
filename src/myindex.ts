@@ -1,8 +1,9 @@
 import { Application, Assets, Texture, } from 'pixi.js';
 import { addSpinButton } from "./mycomponents/spinButton.ts";
 import { startPlay } from "./mycomponents/spinning.ts";
-import { addReels, spinReels } from "./mycomponents/reels.ts";
+import { addReels, addReelsSpinningHandler } from "./mycomponents/reels.ts";
 import { addTween } from "./mycomponents/tween.ts";
+import { addLimitsToGame } from "./mycomponents/limits.ts";
 
 (async () => {
     // Create a new application
@@ -11,9 +12,8 @@ import { addTween } from "./mycomponents/tween.ts";
     // Initialize the application
     await app.init({
         background: '#1099bb',
-        resizeTo: window,
-        height: window.innerHeight,
-        width: window.innerWidth,
+        height: 1050,
+        width: 1200,
     });
 
     // Append the application canvas to the document body
@@ -43,5 +43,12 @@ import { addTween } from "./mycomponents/tween.ts";
         startPlay(reels, tweenTo, spinButton);
     });
 
-    spinReels(app, reels, slotTextures);
+    addLimitsToGame(app);
+    addReelsSpinningHandler(app, reels, slotTextures);
+
+    document.addEventListener('keypress', (e: KeyboardEvent) => {
+        if (e.key === ' ') {
+            startPlay(reels, tweenTo, spinButton);
+        }
+    });
 })();
