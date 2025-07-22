@@ -24,11 +24,15 @@ import {
 
     // Load the textures
     await Assets.load([
-        '/assets/symbols/SYM3.png',
-        '/assets/symbols/SYM4.png',
-        '/assets/symbols/SYM5.png',
-        '/assets/symbols/SYM6.png',
-        '/assets/symbols/SYM7.png',
+        // '/assets/symbols/SYM3.png',
+        // '/assets/symbols/SYM4.png',
+        // '/assets/symbols/SYM5.png',
+        // '/assets/symbols/SYM6.png',
+        // '/assets/symbols/SYM7.png',
+        'https://pixijs.com/assets/eggHead.png',
+        'https://pixijs.com/assets/flowerTop.png',
+        'https://pixijs.com/assets/helmlok.png',
+        'https://pixijs.com/assets/skully.png',
     ]);
 
     const REEL_WIDTH = 160;
@@ -36,21 +40,26 @@ import {
 
     // Create different slot symbols
     const slotTextures = [
-        Texture.from('/assets/symbols/SYM3.png'),
-        Texture.from('/assets/symbols/SYM4.png'),
-        Texture.from('/assets/symbols/SYM5.png'),
-        Texture.from('/assets/symbols/SYM6.png'),
-        Texture.from('/assets/symbols/SYM7.png'),
+        // Texture.from('/assets/symbols/SYM3.png'),
+        // Texture.from('/assets/symbols/SYM4.png'),
+        // Texture.from('/assets/symbols/SYM5.png'),
+        // Texture.from('/assets/symbols/SYM6.png'),
+        // Texture.from('/assets/symbols/SYM7.png'),
+        Texture.from('https://pixijs.com/assets/eggHead.png'),
+        Texture.from('https://pixijs.com/assets/flowerTop.png'),
+        Texture.from('https://pixijs.com/assets/helmlok.png'),
+        Texture.from('https://pixijs.com/assets/skully.png'),
     ];
 
     // Build the reels
     const reels = [];
     const reelContainer = new Container();
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 1; i++) {
         const rc = new Container();
 
         rc.x = i * REEL_WIDTH;
+        // rc.y = SYMBOL_SIZE;
         reelContainer.addChild(rc);
 
         const reel = {
@@ -66,13 +75,13 @@ import {
         rc.filters = [reel.blur];
 
         // Build the symbols
-        for (let j = 0; j < 4; j++) {
+        for (let j = 0; j < 5; j++) {
             const symbol = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
             // Scale the symbol to fit symbol area.
 
-            symbol.y = j * SYMBOL_SIZE;
+            symbol.y =Math.round((SYMBOL_SIZE - symbol.width) / 2);
             symbol.scale.x = symbol.scale.y = Math.min(SYMBOL_SIZE / symbol.width, SYMBOL_SIZE / symbol.height);
-            symbol.x = Math.round((SYMBOL_SIZE - symbol.width) / 2);
+            symbol.x =  j * SYMBOL_SIZE;
             reel.symbols.push(symbol);
             rc.addChild(symbol);
         }
@@ -130,7 +139,7 @@ import {
     headerText.y = Math.round((margin - headerText.height) / 2);
     top.addChild(headerText);
 
-    app.stage.addChild(top);
+    // app.stage.addChild(top);
     app.stage.addChild(bottom);
 
     // Set the interactivity.
@@ -176,10 +185,12 @@ import {
             // Update symbol positions on reel.
             for (let j = 0; j < r.symbols.length; j++) {
                 const s = r.symbols[j];
-                const prevy = s.y;
+                const prevy = s.x;
 
-                s.y = ((r.position + j) % r.symbols.length) * SYMBOL_SIZE - SYMBOL_SIZE;
-                if (s.y < 0 && prevy > SYMBOL_SIZE) {
+                s.x = ((r.position + j) % (r.symbols.length)) * SYMBOL_SIZE - SYMBOL_SIZE;
+                // console.log(prevy)
+                // console.log(s.x)
+                if (s.x < 0 && prevy > SYMBOL_SIZE) {
                     // Detect going over and swap a texture.
                     // This should in proper product be determined from some logical reel.
                     s.texture = slotTextures[Math.floor(Math.random() * slotTextures.length)];
