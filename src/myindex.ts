@@ -1,10 +1,10 @@
 import { Application, Assets, Texture, } from 'pixi.js';
-import { addSpinButton } from "./mycomponents/spinButton.ts";
-import { startPlay } from "./mycomponents/spinning.ts";
-import { addReels, addReelsSpinningHandler } from "./mycomponents/reels.ts";
-import { addTween } from "./mycomponents/tween.ts";
-import { addLimitsToGame } from "./mycomponents/limits.ts";
-import { getThemeConfig } from "./mycomponents/utils.ts";
+import { addSpinButton } from "./components/spinButton.ts";
+import { startPlay } from "./components/spinning.ts";
+import { addReels, addReelsSpinningHandler } from "./components/reels.ts";
+import { addTween } from "./components/tween.ts";
+import { addLimitsToGame } from "./components/limits.ts";
+import { getThemeConfig } from "./components/utils.ts";
 
 (async () => {
     const config = getThemeConfig();
