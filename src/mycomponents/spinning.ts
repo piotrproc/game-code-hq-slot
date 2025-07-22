@@ -26,21 +26,3 @@ function backout(amount) {
     return (t) => --t * t * ((amount + 1) * t + amount) + 1;
 }
 
-//
-// function tweenTo(object, property, target, time, easing, onchange, oncomplete) {
-//     const tween = {
-//         object,
-//         property,
-//         propertyBeginValue: object[property],
-//         target,
-//         easing,
-//         time,
-//         change: onchange,
-//         complete: oncomplete,
-//         start: Date.now(),
-//     };
-//
-//     tweening.push(tween);
-//
-//     return tween;
-// }

@@ -40,10 +40,40 @@ export function addReels(app: Application, slotTextures) {
     }
     app.stage.addChild(reelContainer);
 
-// Build top & bottom covers and position reelContainer
+    // Build top & bottom covers and position reelContainer
     reelContainer.y = (app.screen.height - SYMBOL_SIZE * 3) / 2;
     reelContainer.x = Math.round(app.screen.width - SYMBOL_SIZE * 5);
 
-    return { reels };
+    return {reels};
 }
 
+export function spinReels(app: Application, reels, slotTextures) {
+    // Listen for animate update.
+    app.ticker.add(() => {
+        // Update the slots.
+        for (let i = 0; i < reels.length; i++) {
+            const r = reels[i];
+            // Update blur filter y amount based on speed.
+            // This would be better if calculated with time in mind also. Now blur depends on frame rate.
+
+            r.blur.blurX = (r.position - r.previousPosition) * 8;
+            r.previousPosition = r.position;
+
+            // Update symbol positions on reel.
+            for (let j = 0; j < r.symbols.length; j++) {
+                const s = r.symbols[j];
+                const prevy = s.x;
+
+                s.x = ((r.position + j) % (r.symbols.length)) * SYMBOL_SIZE - SYMBOL_SIZE;
+
+                if (s.x < 0 && prevy > SYMBOL_SIZE) {
+                    // Detect going over and swap a texture.
+                    // This should in proper product be determined from some logical reel.
+                    s.texture = slotTextures[Math.floor(Math.random() * slotTextures.length)];
+                    s.scale.x = s.scale.y = Math.min(SYMBOL_SIZE / s.texture.width, SYMBOL_SIZE / s.texture.height);
+                    s.y = Math.round((SYMBOL_SIZE - s.height) / 2);
+                }
+            }
+        }
+    });
+}
