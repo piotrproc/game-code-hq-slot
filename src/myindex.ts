@@ -9,17 +9,23 @@ import { addTween } from "./mycomponents/tween.ts";
     const app = new Application();
 
     // Initialize the application
-    await app.init({background: '#1099bb', resizeTo: window});
+    await app.init({
+        background: '#1099bb',
+        resizeTo: window,
+        height: window.innerHeight,
+        width: window.innerWidth,
+    });
 
     // Append the application canvas to the document body
     document.body.appendChild(app.canvas);
 
     // Load the textures
     await Assets.load([
-        'https://pixijs.com/assets/eggHead.png',
-        'https://pixijs.com/assets/flowerTop.png',
-        'https://pixijs.com/assets/helmlok.png',
-        'https://pixijs.com/assets/skully.png',
+        {alias: "spinButton", src: "./public/assets/spinButton.png",},
+        {alias: "SYM3", src: 'https://pixijs.com/assets/eggHead.png'},
+        {alias: "SYM4", src: 'https://pixijs.com/assets/flowerTop.png'},
+        {alias: "SYM5", src: 'https://pixijs.com/assets/helmlok.png'},
+        {alias: "SYM6", src: 'https://pixijs.com/assets/skully.png'},
     ]);
 
     // Create different slot symbols

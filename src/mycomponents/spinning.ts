@@ -1,9 +1,12 @@
-let running = false;
+export const running = { value: false};
 
 // Function to start playing.
 export function startPlay(reels, tweenTo) {
-    if (running) return;
-    running = true;
+    if (running.value) {
+        return;
+    }
+    running.value = true;
+
 
     for (let i = 0; i < reels.length; i++) {
         const r = reels[i];
@@ -17,7 +20,7 @@ export function startPlay(reels, tweenTo) {
 
 // Reels done handler.
 function reelsComplete() {
-    running = false;
+    running.value = false;
 }
 
 // Backout function from tweenjs.
