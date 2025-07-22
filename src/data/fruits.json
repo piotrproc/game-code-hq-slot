@@ -1,0 +1,13 @@
+{
+  "name": "fruits",
+  "symbols": [
+    { "alias": "SYM3", "src": "public/assets/symbols/fruits/SYM3.png" },
+    { "alias": "SYM4", "src": "public/assets/symbols/fruits/SYM4.png" },
+    { "alias": "SYM5", "src": "public/assets/symbols/fruits/SYM5.png" },
+    { "alias": "SYM6", "src": "public/assets/symbols/fruits/SYM6.png" }
+  ],
+  "reelSettings": {
+    "spinDuration": 2000,
+    "spinSpeed": 1.5
+  }
+}

@@ -4,7 +4,7 @@ import { startPlay } from "./mycomponents/spinning.ts";
 import { addReels, addReelsSpinningHandler } from "./mycomponents/reels.ts";
 import { addTween } from "./mycomponents/tween.ts";
 import { addLimitsToGame } from "./mycomponents/limits.ts";
-import { getTheme } from "./mycomponents/utils.ts";
+import { getThemeConfig } from "./mycomponents/utils.ts";
 
 (async () => {
     // Create a new application
@@ -20,24 +20,18 @@ import { getTheme } from "./mycomponents/utils.ts";
     // Append the application canvas to the document body
     document.body.appendChild(app.canvas);
 
-    const theme = getTheme();
+    const config = getThemeConfig();
 
     // Load the textures
     await Assets.load([
         {alias: "spinButton", src: "public/assets/spinButton.png",},
-        {alias: "SYM3", src: `${theme}/SYM3.png`},
-        {alias: "SYM4", src: `${theme}/SYM4.png`},
-        {alias: "SYM5", src: `${theme}/SYM5.png`},
-        {alias: "SYM6", src: `${theme}/SYM6.png`},
+        ...config.symbols,
     ]);
 
-    // Create different slot symbols
-    const slotTextures = [
-        Texture.from(`${theme}/SYM3.png`),
-        Texture.from(`${theme}/SYM4.png`),
-        Texture.from(`${theme}/SYM5.png`),
-        Texture.from(`${theme}/SYM6.png`),
-    ];
+    // // Create different slot symbols
+    const slotTextures = config.symbols.map(
+        symbol => Texture.from(`${symbol.src}`)
+    )
 
     const {reels} = addReels(app, slotTextures);
     const tweenTo = addTween(app);

@@ -1,9 +1,20 @@
 import { POSSIBLE_THEMES } from "./consts.ts";
 
-export function getTheme() {
+import fruitsConfig from '../data/fruits.json';
+import halloweenConfig from '../data/halloween.json';
+
+export function getThemeConfig() {
     const urlString = window.location.href;
     const url = new URL(urlString);
     const themeParam = url.searchParams.get("theme");
     const theme = themeParam && POSSIBLE_THEMES.includes(themeParam) ? themeParam : "halloween";
-    return `public/assets/symbols/${theme}`;
+
+    console.log(fruitsConfig)
+
+    if(theme === "fruits") {
+        return fruitsConfig;
+    }
+    else {
+        return halloweenConfig;
+    }
 }
