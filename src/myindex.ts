@@ -17,7 +17,7 @@ import {
     const app = new Application();
 
     // Initialize the application
-    await app.init({ background: '#1099bb', resizeTo: window });
+    await app.init({background: '#1099bb', resizeTo: window});
 
     // Append the application canvas to the document body
     document.body.appendChild(app.canvas);
@@ -58,8 +58,8 @@ import {
     for (let i = 0; i < 3; i++) {
         const rc = new Container();
 
-        rc.y = i * REEL_WIDTH;
-        // rc.y = SYMBOL_SIZE;
+        rc.y = i * REEL_WIDTH - 200;
+        rc.x = 30;
         reelContainer.addChild(rc);
 
         const reel = {
@@ -79,9 +79,10 @@ import {
             const symbol = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
             // Scale the symbol to fit symbol area.
 
-            symbol.y =Math.round((SYMBOL_SIZE - symbol.width) / 2);
+            symbol.y = Math.round((SYMBOL_SIZE - symbol.height) / 2);
             symbol.scale.x = symbol.scale.y = Math.min(SYMBOL_SIZE / symbol.width, SYMBOL_SIZE / symbol.height);
-            symbol.x =  j * SYMBOL_SIZE;
+            symbol.x = j * SYMBOL_SIZE;
+            symbol.anchor = 0.5;
             reel.symbols.push(symbol);
             rc.addChild(symbol);
         }
@@ -94,8 +95,8 @@ import {
 
     reelContainer.y = margin;
     reelContainer.x = Math.round(app.screen.width - REEL_WIDTH * 5);
-    const top = new Graphics().rect(0, 0, app.screen.width, margin).fill({ color: 0x0 });
-    const bottom = new Graphics().rect(0, SYMBOL_SIZE * 3 + margin, app.screen.width, margin).fill({ color: 0x0 });
+    const top = new Graphics().rect(0, 0, app.screen.width, margin).fill({color: 0x0});
+    const bottom = new Graphics().rect(0, SYMBOL_SIZE * 3 + margin, app.screen.width, margin).fill({color: 0x0});
 
     // Create gradient fill
     const fill = new FillGradient(0, 0, 0, 2);
@@ -114,8 +115,8 @@ import {
         fontSize: 36,
         fontStyle: 'italic',
         fontWeight: 'bold',
-        fill: { fill },
-        stroke: { color: 0x4a1850, width: 5 },
+        fill: {fill},
+        stroke: {color: 0x4a1850, width: 5},
         dropShadow: {
             color: 0x000000,
             angle: Math.PI / 6,
@@ -179,7 +180,7 @@ import {
             // Update blur filter y amount based on speed.
             // This would be better if calculated with time in mind also. Now blur depends on frame rate.
 
-            r.blur.blurY = (r.position - r.previousPosition) * 8;
+            r.blur.blurX = (r.position - r.previousPosition) * 8;
             r.previousPosition = r.position;
 
             // Update symbol positions on reel.
@@ -194,7 +195,7 @@ import {
                     // This should in proper product be determined from some logical reel.
                     s.texture = slotTextures[Math.floor(Math.random() * slotTextures.length)];
                     s.scale.x = s.scale.y = Math.min(SYMBOL_SIZE / s.texture.width, SYMBOL_SIZE / s.texture.height);
-                    s.x = Math.round((SYMBOL_SIZE - s.width) / 2);
+                    s.y = Math.round((SYMBOL_SIZE - s.height) / 2);
                 }
             }
         }
@@ -220,6 +221,7 @@ import {
 
         return tween;
     }
+
     // Listen for animate update.
     app.ticker.add(() => {
         const now = Date.now();
