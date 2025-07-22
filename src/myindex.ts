@@ -4,6 +4,7 @@ import { startPlay } from "./mycomponents/spinning.ts";
 import { addReels, addReelsSpinningHandler } from "./mycomponents/reels.ts";
 import { addTween } from "./mycomponents/tween.ts";
 import { addLimitsToGame } from "./mycomponents/limits.ts";
+import { getTheme } from "./mycomponents/utils.ts";
 
 (async () => {
     // Create a new application
@@ -19,29 +20,23 @@ import { addLimitsToGame } from "./mycomponents/limits.ts";
     // Append the application canvas to the document body
     document.body.appendChild(app.canvas);
 
-    const POSSIBLE_THEMES = ["halloween", "fruits"]
-
-    const urlString = window.location.href;
-    const url = new URL(urlString);
-    const themeParam = url.searchParams.get("theme");
-    const theme = themeParam && POSSIBLE_THEMES.includes(themeParam) ? themeParam : "halloween";
-    const basicPath = `public/assets/symbols/${theme}`;
+    const theme = getTheme();
 
     // Load the textures
     await Assets.load([
         {alias: "spinButton", src: "public/assets/spinButton.png",},
-        {alias: "SYM3", src: `${basicPath}/SYM3.png`},
-        {alias: "SYM4", src: `${basicPath}/SYM4.png`},
-        {alias: "SYM5", src: `${basicPath}/SYM5.png`},
-        {alias: "SYM6", src: `${basicPath}/SYM6.png`},
+        {alias: "SYM3", src: `${theme}/SYM3.png`},
+        {alias: "SYM4", src: `${theme}/SYM4.png`},
+        {alias: "SYM5", src: `${theme}/SYM5.png`},
+        {alias: "SYM6", src: `${theme}/SYM6.png`},
     ]);
 
     // Create different slot symbols
     const slotTextures = [
-        Texture.from(`${basicPath}/SYM3.png`),
-        Texture.from(`${basicPath}/SYM4.png`),
-        Texture.from(`${basicPath}/SYM5.png`),
-        Texture.from(`${basicPath}/SYM6.png`),
+        Texture.from(`${theme}/SYM3.png`),
+        Texture.from(`${theme}/SYM4.png`),
+        Texture.from(`${theme}/SYM5.png`),
+        Texture.from(`${theme}/SYM6.png`),
     ];
 
     const {reels} = addReels(app, slotTextures);
