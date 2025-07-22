@@ -7,12 +7,13 @@ import { addLimitsToGame } from "./mycomponents/limits.ts";
 import { getThemeConfig } from "./mycomponents/utils.ts";
 
 (async () => {
+    const config = getThemeConfig();
     // Create a new application
     const app = new Application();
 
     // Initialize the application
     await app.init({
-        background: '#1099bb',
+        background: config.background.color,
         height: 1050,
         width: 1200,
     });
@@ -20,11 +21,9 @@ import { getThemeConfig } from "./mycomponents/utils.ts";
     // Append the application canvas to the document body
     document.body.appendChild(app.canvas);
 
-    const config = getThemeConfig();
-
     // Load the textures
     await Assets.load([
-        {alias: "spinButton", src: "public/assets/spinButton.png",},
+        {alias: "spinButton", src: config.background.spinButton,},
         ...config.symbols,
     ]);
 
