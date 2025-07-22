@@ -1,7 +1,6 @@
 import { Application, Sprite } from "pixi.js";
-import { running } from "./spinning.ts";
 
-export function addSpinButton(app: Application, clickHandler) {
+export function addSpinButton(app: Application) {
     const spinButton = Sprite.from("spinButton");
 
     styleSpinButton(app, spinButton);
@@ -9,11 +8,6 @@ export function addSpinButton(app: Application, clickHandler) {
     // Set the interactivity.
     spinButton.eventMode = 'static';
     spinButton.cursor = 'pointer';
-
-    spinButton.addListener('pointerdown', () => {
-        // spinButton.tint = (!running.value) ? 0x808080 : 0xFFFFFF;
-        clickHandler();
-    });
 
     app.stage.addChild(spinButton);
     return spinButton;

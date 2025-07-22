@@ -38,6 +38,10 @@ import { addTween } from "./mycomponents/tween.ts";
 
     const {reels} = addReels(app, slotTextures);
     const tweenTo = addTween(app);
-    addSpinButton(app, () => startPlay(reels, tweenTo));
+    const spinButton = addSpinButton(app);
+    spinButton.addListener('pointerdown', () => {
+        startPlay(reels, tweenTo, spinButton);
+    });
+
     spinReels(app, reels, slotTextures);
 })();

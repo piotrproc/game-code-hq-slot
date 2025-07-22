@@ -1,12 +1,13 @@
-export const running = { value: false};
+export const running = {value: false};
 
 // Function to start playing.
-export function startPlay(reels, tweenTo) {
+export function startPlay(reels, tweenTo, spinButton) {
     if (running.value) {
         return;
     }
     running.value = true;
-
+    spinButton.tint = 0x808080;
+    spinButton.eventMode = "none";
 
     for (let i = 0; i < reels.length; i++) {
         const r = reels[i];
@@ -14,13 +15,15 @@ export function startPlay(reels, tweenTo) {
         const target = r.position + 10 + i * 5 + extra;
         const time = 2500 + i * 600 + extra * 600;
 
-        tweenTo(r, 'position', target, time, backout(0.5), null, i === reels.length - 1 ? reelsComplete : null);
+        tweenTo(r, 'position', target, time, backout(0.5), null, i === reels.length - 1 ? () => reelsComplete(spinButton) : null);
     }
 }
 
 // Reels done handler.
-function reelsComplete() {
+function reelsComplete(spinButton) {
     running.value = false;
+    spinButton.tint = 0xFFFFFF;
+    spinButton.eventMode = "static";
 }
 
 // Backout function from tweenjs.
