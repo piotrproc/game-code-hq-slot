@@ -1,9 +1,17 @@
 // Build the reels
-import { Application, BlurFilter, Container, Sprite } from "pixi.js";
+import { Application, BlurFilter, Container, ContainerChild, Sprite } from "pixi.js";
 import { REEL_WIDTH, SYMBOL_SIZE } from "./consts.ts";
 
+export type ReelProperties = {
+    container: Container<ContainerChild>,
+    symbols: Sprite[],
+    position: number,
+    previousPosition: number,
+    blur: BlurFilter,
+};
+
 export function addReels(app: Application, slotTextures) {
-    const reels = [];
+    const reels: ReelProperties[] = [];
     const reelContainer = new Container();
 
     for (let i = 0; i < 3; i++) {
@@ -12,7 +20,7 @@ export function addReels(app: Application, slotTextures) {
         rc.y = i * REEL_WIDTH;
         reelContainer.addChild(rc);
 
-        const reel = {
+        const reel: ReelProperties = {
             container: rc,
             symbols: [],
             position: 0,
