@@ -1,3 +1,5 @@
+import { checkWin } from "./winChecker.ts";
+
 export const running = {value: false};
 
 // Function to start playing.
@@ -15,15 +17,16 @@ export function startPlay(reels, tweenTo, spinButton) {
         const target = r.position + 10 + i * 5 + extra;
         const time = 2500 + i * 600 + extra * 600;
 
-        tweenTo(r, 'position', target, time, backout(0.5), null, i === reels.length - 1 ? () => reelsComplete(spinButton) : null);
+        tweenTo(r, 'position', target, time, backout(0.5), null, i === reels.length - 1 ? () => reelsComplete(spinButton, reels) : null);
     }
 }
 
 // Reels done handler.
-function reelsComplete(spinButton) {
+function reelsComplete(spinButton, reels) {
     running.value = false;
     spinButton.tint = 0xFFFFFF;
     spinButton.eventMode = "static";
+    checkWin(reels);
 }
 
 // Backout function from tweenjs.
