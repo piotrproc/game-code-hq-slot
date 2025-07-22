@@ -19,21 +19,29 @@ import { addLimitsToGame } from "./mycomponents/limits.ts";
     // Append the application canvas to the document body
     document.body.appendChild(app.canvas);
 
+    const POSSIBLE_THEMES = ["halloween", "fruits"]
+
+    const urlString = window.location.href;
+    const url = new URL(urlString);
+    const themeParam = url.searchParams.get("theme");
+    const theme = themeParam && POSSIBLE_THEMES.includes(themeParam) ? themeParam : "halloween";
+    const basicPath = `public/assets/symbols/${theme}`;
+
     // Load the textures
     await Assets.load([
-        {alias: "spinButton", src: "./public/assets/spinButton.png",},
-        {alias: "SYM3", src: 'https://pixijs.com/assets/eggHead.png'},
-        {alias: "SYM4", src: 'https://pixijs.com/assets/flowerTop.png'},
-        {alias: "SYM5", src: 'https://pixijs.com/assets/helmlok.png'},
-        {alias: "SYM6", src: 'https://pixijs.com/assets/skully.png'},
+        {alias: "spinButton", src: "public/assets/spinButton.png",},
+        {alias: "SYM3", src: `${basicPath}/SYM3.png`},
+        {alias: "SYM4", src: `${basicPath}/SYM4.png`},
+        {alias: "SYM5", src: `${basicPath}/SYM5.png`},
+        {alias: "SYM6", src: `${basicPath}/SYM6.png`},
     ]);
 
     // Create different slot symbols
     const slotTextures = [
-        Texture.from('https://pixijs.com/assets/eggHead.png'),
-        Texture.from('https://pixijs.com/assets/flowerTop.png'),
-        Texture.from('https://pixijs.com/assets/helmlok.png'),
-        Texture.from('https://pixijs.com/assets/skully.png'),
+        Texture.from(`${basicPath}/SYM3.png`),
+        Texture.from(`${basicPath}/SYM4.png`),
+        Texture.from(`${basicPath}/SYM5.png`),
+        Texture.from(`${basicPath}/SYM6.png`),
     ];
 
     const {reels} = addReels(app, slotTextures);
