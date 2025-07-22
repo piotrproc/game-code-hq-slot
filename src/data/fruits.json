@@ -4,7 +4,8 @@
     { "alias": "SYM3", "src": "public/assets/fruits/symbols/SYM3.png" },
     { "alias": "SYM4", "src": "public/assets/fruits/symbols/SYM4.png" },
     { "alias": "SYM5", "src": "public/assets/fruits/symbols/SYM5.png" },
-    { "alias": "SYM6", "src": "public/assets/fruits/symbols/SYM6.png" }
+    { "alias": "SYM6", "src": "public/assets/fruits/symbols/SYM6.png" },
+    { "alias": "SYM7", "src": "public/assets/fruits/symbols/SYM7.png" }
   ],
   "reelSettings": {
     "spinDuration": 2000,
