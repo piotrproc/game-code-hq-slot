@@ -3,27 +3,27 @@
   "symbols": [
     {
       "alias": "SYM3",
-      "src": "public/assets/fruits/symbols/SYM3.png",
+      "src": "assets/fruits/symbols/SYM3.png",
       "payout": 5
     },
     {
       "alias": "SYM4",
-      "src": "public/assets/fruits/symbols/SYM4.png",
+      "src": "assets/fruits/symbols/SYM4.png",
       "payout": 10
     },
     {
       "alias": "SYM5",
-      "src": "public/assets/fruits/symbols/SYM5.png",
+      "src": "assets/fruits/symbols/SYM5.png",
       "payout": 15
     },
     {
       "alias": "SYM6",
-      "src": "public/assets/fruits/symbols/SYM6.png",
+      "src": "assets/fruits/symbols/SYM6.png",
       "payout": 20
     },
     {
       "alias": "SYM7",
-      "src": "public/assets/fruits/symbols/SYM7.png",
+      "src": "assets/fruits/symbols/SYM7.png",
       "payout": 25
     }
   ],
@@ -33,6 +33,6 @@
   },
   "background": {
     "color": "#06a159",
-    "spinButton": "public/assets/fruits/spinButton.png"
+    "spinButton": "assets/fruits/spinButton.png"
   }
 }

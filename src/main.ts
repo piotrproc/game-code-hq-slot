@@ -11,17 +11,14 @@ import { addChangeThemeElement } from "./components/changeThemeElement.ts";
 (async () => {
     const config = getThemeConfig();
     // Create a new application
-    const app = new Application();
-
-    // Initialize the application
-    await app.init({
+    const app = new Application({
         background: config.background.color,
         height: 1050,
         width: 1200,
     });
 
     // Append the application canvas to the document body
-    document.body.appendChild(app.canvas);
+    document.body.appendChild(app.view);
 
     // Load the textures
     await Assets.load([

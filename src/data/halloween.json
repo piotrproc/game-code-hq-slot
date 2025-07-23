@@ -3,12 +3,12 @@
   "symbols": [
     {
       "alias": "SYM3",
-      "src": "public/assets/halloween/symbols/SYM3.png",
+      "src": "assets/halloween/symbols/SYM3.png",
       "payout": 5
     },
     {
       "alias": "SYM4",
-      "src": "public/assets/halloween/symbols/SYM4.png",
+      "src": "assets/halloween/symbols/SYM4.png",
       "payout": 10
     },
     {
@@ -28,6 +28,6 @@
   },
   "background": {
     "color": "#1099bb",
-    "spinButton": "public/assets/halloween/spinButton.png"
+    "spinButton": "assets/halloween/spinButton.png"
   }
 }

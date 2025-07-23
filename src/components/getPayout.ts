@@ -1,7 +1,5 @@
 export function getPayout(config, sprite) {
-    const texture = sprite.texture.label;
-    const filename = texture.replace(/^.*[\\/]/, '');
-    const symbolName = filename.split(".")[0];
+    const symbolName = sprite.texture.textureCacheIds[1];
 
     return config.symbols.filter(symbol => symbol.alias === symbolName)[0].payout
 }

@@ -22,8 +22,8 @@ function comparisonFunction(a, b) {
 }
 
 function checkBetlineWin(config, sprite1, sprite2, sprite3, winText) {
-    const isWin = sprite1._texture.label === sprite2._texture.label
-        && sprite2._texture.label === sprite3._texture.label;
+    const isWin = sprite1.texture.textureCacheIds[1] === sprite2.texture.textureCacheIds[1]
+        && sprite2.texture.textureCacheIds[1] === sprite3.texture.textureCacheIds[1];
 
     if (isWin) {
         const payout = getPayout(config, sprite1);
