@@ -5,7 +5,7 @@ import { addReels, addReelsSpinningHandler } from "./components/reels.ts";
 import { addTween } from "./components/tween.ts";
 import { addLimitsToGame } from "./components/limits.ts";
 import { addKeyboardHandler, getThemeConfig } from "./components/utils.ts";
-import { addWinHolder } from "./components/winHolder.ts";
+import { addWinHolderElements } from "./components/winHolder.ts";
 import { addChangeThemeElement } from "./components/changeThemeElement.ts";
 
 (async () => {
@@ -32,15 +32,15 @@ import { addChangeThemeElement } from "./components/changeThemeElement.ts";
     )
 
     const {reels} = addReels(app, slotTextures);
-    const winText = addWinHolder(app);
+    const winElements = addWinHolderElements(app);
     const tweenTo = addTween(app);
     const spinButton = addSpinButton(app);
     spinButton.addListener('pointerdown', () => {
-        startPlay(config, reels, tweenTo, spinButton, winText);
+        startPlay(config, reels, tweenTo, spinButton, winElements);
     });
 
     addChangeThemeElement(app);
     addLimitsToGame(app);
     addReelsSpinningHandler(app, reels, slotTextures);
-    addKeyboardHandler(() => startPlay(config, reels, tweenTo, spinButton, winText))
+    addKeyboardHandler(() => startPlay(config, reels, tweenTo, spinButton, winElements))
 })();

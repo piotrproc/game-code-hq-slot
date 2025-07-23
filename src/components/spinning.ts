@@ -4,7 +4,7 @@ import { DEFAULT_TINT, DIM_TINT } from "./consts.ts";
 export const running = {value: false};
 
 // Function to start playing.
-export function startPlay(config, reels, tweenTo, spinButton, winText) {
+export function startPlay(config, reels, tweenTo, spinButton, winElements) {
     if (running.value) {
         return;
     }
@@ -19,7 +19,7 @@ export function startPlay(config, reels, tweenTo, spinButton, winText) {
         const target = r.position + 10 + i * 5 + extra;
         const time = 2500 + i * 600 + extra * 600;
 
-        tweenTo(r, 'position', target, time, backout(0.5), null, i === reels.length - 1 ? () => reelsComplete(config, reels, spinButton, winText) : null);
+        tweenTo(r, 'position', target, time, backout(0.5), null, i === reels.length - 1 ? () => reelsComplete(config, reels, spinButton, winElements) : null);
     }
 }
 
@@ -30,11 +30,11 @@ function backout(amount) {
 }
 
 // Reels done handler.
-function reelsComplete(config, reels, spinButton, winText) {
+function reelsComplete(config, reels, spinButton, winElements) {
     running.value = false;
     spinButton.tint = DEFAULT_TINT;
     spinButton.eventMode = "static";
-    checkWin(config, reels, winText);
+    checkWin(config, reels, winElements);
 }
 
 function setReelsToDefault(reels) {
