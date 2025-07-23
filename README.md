@@ -13,11 +13,12 @@ npm run dev
 
 - Pixi.js version 7
 - Code split across 3 main regions: animation, UI, win
-- Animations executed by pixi.ticker
+- Animations are executed by pixi.ticker
 - Multiple themes (configs) of the game. Currently: halloween and fruits.
     - Use can change the theme:
         - by clicking the ⟳ button
         - by changing URL e.g. add this to URL to have fruits theme `?theme=fruits`
+- Configs of the themes can be found in `/src/data` folder 
 
 ## Notes
 
