@@ -11,7 +11,7 @@ import { addChangeThemeButton } from "./components/ui/themeButton.ts";
 (async () => {
     const config = getThemeConfig();
     // Create a new application
-    const app = new Application({
+    const app = new Application<HTMLCanvasElement>({
         background: config.background.color,
         height: 1050,
         width: 1200,

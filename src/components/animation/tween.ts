@@ -1,11 +1,23 @@
-import { Application } from "pixi.js";
+import { Application, Sprite } from "pixi.js";
+
+type TweenConfig = {
+    object: Sprite;
+    property: string;
+    propertyBeginValue: number;
+    target: number;
+    easing: (t: number) => number;
+    time: number;
+    change: (number) => void;
+    complete: (number) => void;
+    start: number
+}
 
 export function addTween(app: Application) {
     // Very simple tweening utility function. This should be replaced with a proper tweening library in a real product.
-    const tweening = [];
+    const tweening:TweenConfig[] = [];
 
     function tweenTo(object, property, target, time, easing, onchange, oncomplete) {
-        const tween = {
+        const tween: TweenConfig = {
             object,
             property,
             propertyBeginValue: object[property],
@@ -25,10 +37,10 @@ export function addTween(app: Application) {
     // Listen for animate update.
     app.ticker.add(() => {
         const now = Date.now();
-        const remove = [];
+        const remove: TweenConfig[] = [];
 
         for (let i = 0; i < tweening.length; i++) {
-            const t = tweening[i];
+            const t: TweenConfig = tweening[i];
             const phase = Math.min(1, (now - t.start) / t.time);
 
             t.object[t.property] = lerp(t.propertyBeginValue, t.target, t.easing(phase));
