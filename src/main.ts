@@ -6,6 +6,7 @@ import { addTween } from "./components/tween.ts";
 import { addLimitsToGame } from "./components/limits.ts";
 import { addKeyboardHandler, getThemeConfig } from "./components/utils.ts";
 import { addWinHolder } from "./components/winHolder.ts";
+import { addChangeThemeElement } from "./components/changeThemeElement.ts";
 
 (async () => {
     const config = getThemeConfig();
@@ -41,6 +42,7 @@ import { addWinHolder } from "./components/winHolder.ts";
         startPlay(config, reels, tweenTo, spinButton, winText);
     });
 
+    addChangeThemeElement(app);
     addLimitsToGame(app);
     addReelsSpinningHandler(app, reels, slotTextures);
     addKeyboardHandler(() => startPlay(config, reels, tweenTo, spinButton, winText))
