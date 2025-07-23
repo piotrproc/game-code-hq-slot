@@ -1,8 +1,7 @@
-import { DIM_TINT, TOTAL_WIN_TEXT, WIN_TEXT } from "../consts.ts";
+import { DIM_TINT, LEFT_TOP_CORNER, SYMBOL_SIZE, TOTAL_WIN_TEXT, WIN_TEXT } from "../consts.ts";
 import { getPayout } from "./getPayout.ts";
-import { spinWin, totalWin } from "./winHolder.ts";
 import { Application, Graphics } from "pixi.js";
-import { betlineGraphics } from "../states.ts";
+import { betlineGraphics, spinWin, totalWin } from "../states.ts";
 
 export function checkWin(app: Application, config, reels, winElements) {
 
@@ -54,9 +53,9 @@ function drawBetline(app, sprite1, sprite2, sprite3) {
 
     graphics.beginFill();
     graphics.lineStyle(4, 0xffffff);
-    graphics.moveTo(450 + (sprite1.myX * 150), 300 + (sprite1.myY * 150));
-    graphics.lineTo(450 + (sprite2.myX * 150), 300 + (sprite2.myY * 150));
-    graphics.lineTo(450 + (sprite3.myX * 150), 300 + (sprite3.myY * 150));
+    graphics.moveTo(LEFT_TOP_CORNER.x + (sprite1.myX * SYMBOL_SIZE), LEFT_TOP_CORNER.y + (sprite1.myY * SYMBOL_SIZE));
+    graphics.lineTo(LEFT_TOP_CORNER.x + (sprite2.myX * SYMBOL_SIZE), LEFT_TOP_CORNER.y + (sprite2.myY * SYMBOL_SIZE));
+    graphics.lineTo(LEFT_TOP_CORNER.x + (sprite3.myX * SYMBOL_SIZE), LEFT_TOP_CORNER.y + (sprite3.myY * SYMBOL_SIZE));
     graphics.endFill();
 
     app.stage.addChild(graphics);

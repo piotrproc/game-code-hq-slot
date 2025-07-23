@@ -1,9 +1,6 @@
 import { Application, Text } from "pixi.js";
 import { TOTAL_WIN_TEXT, WIN_TEXT } from "../consts.ts";
 
-export const totalWin = {value: 0};
-export const spinWin = {value: 0};
-
 export function addWinHolderElements(app: Application) {
     return {
         winTotalText: addWinTotalHolder(app),

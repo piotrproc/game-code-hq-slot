@@ -1,13 +1,11 @@
 import { checkWin } from "../win/winChecker.ts";
 import { DEFAULT_TINT, DIM_TINT } from "../consts.ts";
 import { Application } from "pixi.js";
-import { betlineGraphics } from "../states.ts";
-
-export const running = {value: false};
+import { betlineGraphics, isRunning } from "../states.ts";
 
 // Function to start playing.
 export function startPlay(app:Application, config, reels, tweenTo, spinButton, winElements) {
-    if (running.value) {
+    if (isRunning.value) {
         return;
     }
     onStartSpin(reels, spinButton);
@@ -24,7 +22,7 @@ export function startPlay(app:Application, config, reels, tweenTo, spinButton, w
 
 function onStartSpin(reels, spinButton) {
     setReelsToDefault(reels);
-    running.value = true;
+    isRunning.value = true;
     spinButton.tint = DIM_TINT;
     spinButton.eventMode = "none";
     betlineGraphics.value.forEach(graphic => {
@@ -41,7 +39,7 @@ function backout(amount) {
 
 // Reels done handler.
 function reelsComplete(app, config, reels, spinButton, winElements) {
-    running.value = false;
+    isRunning.value = false;
     spinButton.tint = DEFAULT_TINT;
     spinButton.eventMode = "static";
     checkWin(app, config, reels, winElements);
