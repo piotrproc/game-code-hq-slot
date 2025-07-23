@@ -2,8 +2,7 @@ import { DIM_TINT, TOTAL_WIN_TEXT, WIN_TEXT } from "../consts.ts";
 import { getPayout } from "./getPayout.ts";
 import { spinWin, totalWin } from "./winHolder.ts";
 import { Application, Graphics } from "pixi.js";
-
-export const betlineGraphics: { value: Graphics[]} = {value: []};
+import { betlineGraphics } from "../states.ts";
 
 export function checkWin(app: Application, config, reels, winElements) {
 

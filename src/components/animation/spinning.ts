@@ -1,6 +1,7 @@
-import { betlineGraphics, checkWin } from "../win/winChecker.ts";
+import { checkWin } from "../win/winChecker.ts";
 import { DEFAULT_TINT, DIM_TINT } from "../consts.ts";
 import { Application } from "pixi.js";
+import { betlineGraphics } from "../states.ts";
 
 export const running = {value: false};
 
