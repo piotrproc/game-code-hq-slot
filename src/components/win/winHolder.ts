@@ -1,31 +1,31 @@
 import { Application, Text } from "pixi.js";
-import { TOTAL_WIN_TEXT, WIN_TEXT } from "../consts.ts";
+import { BALANCE_TEXT, DEFAULT_BALANCE, WIN_TEXT } from "../consts.ts";
 
 export function addWinHolderElements(app: Application) {
     return {
-        winTotalText: addWinTotalHolder(app),
-        winText: addWinHolder(app),
+        spinWinText: addWinHolder(app),
+        balanceText: addBalance(app)
     }
 }
 
-function addWinTotalHolder(app: Application) {
-    const winTotalText = new Text(TOTAL_WIN_TEXT + '0');
+function addBalance(app: Application) {
+    const balanceText = new Text(BALANCE_TEXT + DEFAULT_BALANCE);
 
-    winTotalText.anchor.set(0.5);
-    winTotalText.x = app.screen.width * (3 / 5);
-    winTotalText.y = app.screen.height * (5 / 7);
+    balanceText.anchor.set(0.5);
+    balanceText.x = app.screen.width * (3 / 5);
+    balanceText.y = app.screen.height * (5 / 7);
 
-    app.stage.addChild(winTotalText);
-    return winTotalText;
+    app.stage.addChild(balanceText);
+    return balanceText;
 }
 
 function addWinHolder(app: Application) {
-    const winText = new Text(WIN_TEXT + '0');
+    const spinWinText = new Text(WIN_TEXT + '0');
 
-    winText.anchor.set(0.5);
-    winText.x = app.screen.width * (2 / 5);
-    winText.y = app.screen.height * (5 / 7);
+    spinWinText.anchor.set(0.5);
+    spinWinText.x = app.screen.width * (2 / 5);
+    spinWinText.y = app.screen.height * (5 / 7);
 
-    app.stage.addChild(winText);
-    return winText;
+    app.stage.addChild(spinWinText);
+    return spinWinText;
 }

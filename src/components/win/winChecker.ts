@@ -1,7 +1,7 @@
-import { DIM_TINT, LEFT_TOP_CORNER, SYMBOL_SIZE, TOTAL_WIN_TEXT, WIN_TEXT } from "../consts.ts";
+import { BALANCE_TEXT, DIM_TINT, LEFT_TOP_CORNER, SYMBOL_SIZE, WIN_TEXT } from "../consts.ts";
 import { getPayout } from "./getPayout.ts";
 import { Application, Graphics } from "pixi.js";
-import { betlineGraphics, spinWin, totalWin } from "../states.ts";
+import { balance, betlineGraphics, spinWin } from "../states.ts";
 
 export function checkWin(app: Application, config, reels, winElements) {
 
@@ -33,14 +33,14 @@ function checkBetlineWin(app, config, sprite1, sprite2, sprite3, winElements) {
 
     if (isWin) {
         const payout = getPayout(config, sprite1);
-        totalWin.value += payout;
-        spinWin.value += payout
+        spinWin.value += payout;
+        balance.value += payout;
 
         sprite1.tint = DIM_TINT;
         sprite2.tint = DIM_TINT;
         sprite3.tint = DIM_TINT;
-        winElements.winText.text = WIN_TEXT + spinWin.value;
-        winElements.winTotalText.text = TOTAL_WIN_TEXT + totalWin.value;
+        winElements.spinWinText.text = WIN_TEXT + spinWin.value;
+        winElements.balanceText.text = BALANCE_TEXT + balance.value;
 
         drawBetline(app, sprite1, sprite2, sprite3);
     }

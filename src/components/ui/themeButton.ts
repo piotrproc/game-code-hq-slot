@@ -9,19 +9,19 @@ export function addChangeThemeButton(app: Application){
         fontWeight: 'bold',
     });
 
-    const winText = new Text('⟳', style);
+    const themeButton = new Text('⟳', style);
 
-    winText.anchor.set(0.5);
-    winText.x = app.screen.width / 2;
-    winText.y = app.screen.height * (1 / 7);
+    themeButton.anchor.set(0.5);
+    themeButton.x = app.screen.width / 2;
+    themeButton.y = app.screen.height * (1 / 7);
 
-    winText.eventMode = 'static';
-    winText.cursor = 'pointer';
+    themeButton.eventMode = 'static';
+    themeButton.cursor = 'pointer';
 
-    winText.addListener('pointerdown', changeTheme);
+    themeButton.addListener('pointerdown', changeTheme);
 
-    app.stage.addChild(winText);
-    return winText;
+    app.stage.addChild(themeButton);
+    return themeButton;
 }
 
 function changeTheme() {

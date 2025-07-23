@@ -1,13 +1,14 @@
 import { checkWin } from "../win/winChecker.ts";
-import { DEFAULT_TINT, DIM_TINT, WIN_TEXT } from "../consts.ts";
+import { BALANCE_TEXT, DEFAULT_TINT, DIM_TINT, SPIN_COST, WIN_TEXT } from "../consts.ts";
 import { Application } from "pixi.js";
-import { betlineGraphics, isRunning, spinWin } from "../states.ts";
+import { balance, betlineGraphics, isRunning, spinWin } from "../states.ts";
 
 // Function to start playing.
-export function startPlay(app:Application, config, reels, tweenTo, spinButton, winElements) {
+export function startPlay(app: Application, config, reels, tweenTo, spinButton, winElements) {
     if (isRunning.value) {
         return;
     }
+
     onStartSpin(reels, spinButton, winElements);
 
     for (let i = 0; i < reels.length; i++) {
@@ -29,8 +30,12 @@ function onStartSpin(reels, spinButton, winElements) {
         graphic.destroy();
     })
     betlineGraphics.value = [];
+
     spinWin.value = 0;
-    winElements.winText.text = WIN_TEXT + spinWin.value;
+    winElements.spinWinText.text = WIN_TEXT + spinWin.value;
+
+    balance.value -= SPIN_COST;
+    winElements.balanceText.text = BALANCE_TEXT + balance.value;
 }
 
 // Backout function from tweenjs.
@@ -44,7 +49,17 @@ function reelsComplete(app, config, reels, spinButton, winElements) {
     isRunning.value = false;
     spinButton.tint = DEFAULT_TINT;
     spinButton.eventMode = "static";
+
     checkWin(app, config, reels, winElements);
+
+    if (balance.value < SPIN_COST) {
+        disableSpinButton(spinButton);
+    }
+}
+
+function disableSpinButton(spinButton) {
+    spinButton.tint = DIM_TINT;
+    spinButton.eventMode = "none";
 }
 
 function setReelsToDefault(reels) {
