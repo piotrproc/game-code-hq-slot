@@ -4,7 +4,7 @@ import { startPlay } from "./components/spinning.ts";
 import { addReels, addReelsSpinningHandler } from "./components/reels.ts";
 import { addTween } from "./components/tween.ts";
 import { addLimitsToGame } from "./components/limits.ts";
-import { getThemeConfig } from "./components/utils.ts";
+import { addKeyboardHandler, getThemeConfig } from "./components/utils.ts";
 
 (async () => {
     const config = getThemeConfig();
@@ -27,7 +27,7 @@ import { getThemeConfig } from "./components/utils.ts";
         ...config.symbols,
     ]);
 
-    // // Create different slot symbols
+    // Create different slot symbols
     const slotTextures = config.symbols.map(
         symbol => Texture.from(symbol.src)
     )
@@ -36,15 +36,10 @@ import { getThemeConfig } from "./components/utils.ts";
     const tweenTo = addTween(app);
     const spinButton = addSpinButton(app);
     spinButton.addListener('pointerdown', () => {
-        startPlay(reels, tweenTo, spinButton);
+        startPlay(config, reels, tweenTo, spinButton);
     });
 
     addLimitsToGame(app);
     addReelsSpinningHandler(app, reels, slotTextures);
-
-    document.addEventListener('keypress', (e: KeyboardEvent) => {
-        if (e.key === ' ') {
-            startPlay(reels, tweenTo, spinButton);
-        }
-    });
+    addKeyboardHandler(() => startPlay(config, reels, tweenTo, spinButton))
 })();

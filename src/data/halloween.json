@@ -1,10 +1,26 @@
 {
   "name": "halloween",
   "symbols": [
-    { "alias": "SYM3", "src": "public/assets/halloween/symbols/SYM3.png" },
-    { "alias": "SYM4", "src": "public/assets/halloween/symbols/SYM4.png" },
-    { "alias": "SYM5", "src": "public/assets/halloween/symbols/SYM5.png" },
-    { "alias": "SYM6", "src": "public/assets/halloween/symbols/SYM6.png" }
+    {
+      "alias": "SYM3",
+      "src": "public/assets/halloween/symbols/SYM3.png",
+      "payout": 5
+    },
+    {
+      "alias": "SYM4",
+      "src": "public/assets/halloween/symbols/SYM4.png",
+      "payout": 10
+    },
+    {
+      "alias": "SYM5",
+      "src": "public/assets/halloween/symbols/SYM5.png",
+      "payout": 15
+    },
+    {
+      "alias": "SYM6",
+      "src": "public/assets/halloween/symbols/SYM6.png",
+      "payout": 20
+    }
   ],
   "reelSettings": {
     "spinDuration": 2000,

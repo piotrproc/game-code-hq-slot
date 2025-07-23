@@ -16,3 +16,11 @@ export function getThemeConfig() {
         return halloweenConfig;
     }
 }
+
+export function addKeyboardHandler(handler) {
+    document.addEventListener('keypress', (e: KeyboardEvent) => {
+        if (e.key === ' ') {
+            handler();
+        }
+    });
+}

@@ -1,11 +1,31 @@
 {
   "name": "fruits",
   "symbols": [
-    { "alias": "SYM3", "src": "public/assets/fruits/symbols/SYM3.png" },
-    { "alias": "SYM4", "src": "public/assets/fruits/symbols/SYM4.png" },
-    { "alias": "SYM5", "src": "public/assets/fruits/symbols/SYM5.png" },
-    { "alias": "SYM6", "src": "public/assets/fruits/symbols/SYM6.png" },
-    { "alias": "SYM7", "src": "public/assets/fruits/symbols/SYM7.png" }
+    {
+      "alias": "SYM3",
+      "src": "public/assets/fruits/symbols/SYM3.png",
+      "payout": 5
+    },
+    {
+      "alias": "SYM4",
+      "src": "public/assets/fruits/symbols/SYM4.png",
+      "payout": 10
+    },
+    {
+      "alias": "SYM5",
+      "src": "public/assets/fruits/symbols/SYM5.png",
+      "payout": 15
+    },
+    {
+      "alias": "SYM6",
+      "src": "public/assets/fruits/symbols/SYM6.png",
+      "payout": 20
+    },
+    {
+      "alias": "SYM7",
+      "src": "public/assets/fruits/symbols/SYM7.png",
+      "payout": 25
+    }
   ],
   "reelSettings": {
     "spinDuration": 2000,
