@@ -6,5 +6,5 @@ export const DIM_TINT = 0x808080;
 export const WIN_TEXT = "Win: ";
 export const BALANCE_TEXT = "Balance: ";
 export const LEFT_TOP_CORNER = { x: 450, y: 300}
-export const DEFAULT_BALANCE = 3;
+export const DEFAULT_BALANCE = 100;
 export const SPIN_COST = 2;
