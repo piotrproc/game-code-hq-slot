@@ -26,7 +26,10 @@ function onStartSpin(reels, spinButton) {
     running.value = true;
     spinButton.tint = DIM_TINT;
     spinButton.eventMode = "none";
-    betlineGraphics.value?.destroy();
+    betlineGraphics.value.forEach(graphic => {
+        graphic.destroy();
+    })
+    betlineGraphics.value = [];
 }
 
 // Backout function from tweenjs.

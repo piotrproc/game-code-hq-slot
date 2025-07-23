@@ -3,7 +3,7 @@ import { getPayout } from "./getPayout.ts";
 import { spinWin, totalWin } from "./winHolder.ts";
 import { Application, Graphics } from "pixi.js";
 
-export const betlineGraphics: { value: Graphics | null } = {value: null};
+export const betlineGraphics: { value: Graphics[]} = {value: []};
 
 export function checkWin(app: Application, config, reels, winElements) {
 
@@ -61,6 +61,5 @@ function drawBetline(app, sprite1, sprite2, sprite3) {
     graphics.endFill();
 
     app.stage.addChild(graphics);
-
-    betlineGraphics.value = graphics;
+    betlineGraphics.value.push(graphics);
 }
