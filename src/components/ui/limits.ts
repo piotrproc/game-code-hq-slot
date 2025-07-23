@@ -1,5 +1,5 @@
 import { Application, Graphics } from "pixi.js";
-import { SYMBOL_SIZE } from "./consts.ts";
+import { SYMBOL_SIZE } from "../consts.ts";
 
 export function addLimitsToGame(app: Application) {
     const margin = (app.screen.height - SYMBOL_SIZE * 2) / 2;

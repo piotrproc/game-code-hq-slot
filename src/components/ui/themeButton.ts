@@ -1,9 +1,15 @@
-import { Application, Text } from "pixi.js";
-import { getThemeName } from "./utils.ts";
-import { POSSIBLE_THEMES } from "./consts.ts";
+import { Application, Text, TextStyle } from "pixi.js";
+import { getThemeName } from "../utils.ts";
+import { POSSIBLE_THEMES } from "../consts.ts";
 
-export function addChangeThemeElement(app: Application){
-    const winText = new Text('Change theme');
+export function addChangeThemeButton(app: Application){
+    const style = new TextStyle({
+        fontFamily: 'Arial',
+        fontSize: 60,
+        fontWeight: 'bold',
+    });
+
+    const winText = new Text('⟳', style);
 
     winText.anchor.set(0.5);
     winText.x = app.screen.width / 2;

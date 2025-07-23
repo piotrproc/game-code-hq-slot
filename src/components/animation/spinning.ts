@@ -1,5 +1,5 @@
-import { checkWin } from "./winChecker.ts";
-import { DEFAULT_TINT, DIM_TINT } from "./consts.ts";
+import { checkWin } from "../win/winChecker.ts";
+import { DEFAULT_TINT, DIM_TINT } from "../consts.ts";
 
 export const running = {value: false};
 

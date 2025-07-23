@@ -1,5 +1,5 @@
 import { Application, Text } from "pixi.js";
-import { TOTAL_WIN_TEXT, WIN_TEXT } from "./consts.ts";
+import { TOTAL_WIN_TEXT, WIN_TEXT } from "../consts.ts";
 
 export const totalWin = {value: 0};
 export const spinWin = {value: 0};

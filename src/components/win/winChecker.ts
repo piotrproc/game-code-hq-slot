@@ -1,4 +1,4 @@
-import { DIM_TINT, TOTAL_WIN_TEXT, WIN_TEXT } from "./consts.ts";
+import { DIM_TINT, TOTAL_WIN_TEXT, WIN_TEXT } from "../consts.ts";
 import { getPayout } from "./getPayout.ts";
 import { spinWin, totalWin } from "./winHolder.ts";
 

@@ -1,6 +1,6 @@
 // Build the reels
 import { Application, BlurFilter, Container, DisplayObject, Sprite } from "pixi.js";
-import { REEL_WIDTH, SYMBOL_SIZE } from "./consts.ts";
+import { REEL_WIDTH, SYMBOL_SIZE } from "../consts.ts";
 
 export type ReelProperties = {
     container: Container<DisplayObject>,

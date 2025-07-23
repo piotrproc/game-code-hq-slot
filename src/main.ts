@@ -1,12 +1,12 @@
 import { Application, Assets, Texture, } from 'pixi.js';
-import { addSpinButton } from "./components/spinButton.ts";
-import { startPlay } from "./components/spinning.ts";
-import { addReels, addReelsSpinningHandler } from "./components/reels.ts";
-import { addTween } from "./components/tween.ts";
-import { addLimitsToGame } from "./components/limits.ts";
+import { addSpinButton } from "./components/ui/spinButton.ts";
+import { startPlay } from "./components/animation/spinning.ts";
+import { addReels, addReelsSpinningHandler } from "./components/animation/reels.ts";
+import { addTween } from "./components/animation/tween.ts";
+import { addLimitsToGame } from "./components/ui/limits.ts";
 import { addKeyboardHandler, getThemeConfig } from "./components/utils.ts";
-import { addWinHolderElements } from "./components/winHolder.ts";
-import { addChangeThemeElement } from "./components/changeThemeElement.ts";
+import { addWinHolderElements } from "./components/win/winHolder.ts";
+import { addChangeThemeButton } from "./components/ui/themeButton.ts";
 
 (async () => {
     const config = getThemeConfig();
@@ -39,7 +39,7 @@ import { addChangeThemeElement } from "./components/changeThemeElement.ts";
         startPlay(config, reels, tweenTo, spinButton, winElements);
     });
 
-    addChangeThemeElement(app);
+    addChangeThemeButton(app);
     addLimitsToGame(app);
     addReelsSpinningHandler(app, reels, slotTextures);
     addKeyboardHandler(() => startPlay(config, reels, tweenTo, spinButton, winElements))
