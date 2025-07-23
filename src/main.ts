@@ -36,11 +36,11 @@ import { addChangeThemeButton } from "./components/ui/themeButton.ts";
     const tweenTo = addTween(app);
     const spinButton = addSpinButton(app);
     spinButton.addListener('pointerdown', () => {
-        startPlay(config, reels, tweenTo, spinButton, winElements);
+        startPlay(app, config, reels, tweenTo, spinButton, winElements);
     });
 
     addChangeThemeButton(app);
     addLimitsToGame(app);
     addReelsSpinningHandler(app, reels, slotTextures);
-    addKeyboardHandler(() => startPlay(config, reels, tweenTo, spinButton, winElements))
+    addKeyboardHandler(() => startPlay(app, config, reels, tweenTo, spinButton, winElements))
 })();
