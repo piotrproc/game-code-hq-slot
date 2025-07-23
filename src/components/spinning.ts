@@ -1,4 +1,5 @@
 import { checkWin } from "./winChecker.ts";
+import { DEFAULT_TINT, DIM_TINT } from "./consts.ts";
 
 export const running = {value: false};
 
@@ -7,8 +8,9 @@ export function startPlay(reels, tweenTo, spinButton) {
     if (running.value) {
         return;
     }
+    setReelsToDefault(reels);
     running.value = true;
-    spinButton.tint = 0x808080;
+    spinButton.tint = DIM_TINT;
     spinButton.eventMode = "none";
 
     for (let i = 0; i < reels.length; i++) {
@@ -21,17 +23,24 @@ export function startPlay(reels, tweenTo, spinButton) {
     }
 }
 
-// Reels done handler.
-function reelsComplete(spinButton, reels) {
-    running.value = false;
-    spinButton.tint = 0xFFFFFF;
-    spinButton.eventMode = "static";
-    checkWin(reels);
-}
-
 // Backout function from tweenjs.
 // https://github.com/CreateJS/TweenJS/blob/master/src/tweenjs/Ease.js
 function backout(amount) {
     return (t) => --t * t * ((amount + 1) * t + amount) + 1;
 }
 
+// Reels done handler.
+function reelsComplete(spinButton, reels) {
+    running.value = false;
+    spinButton.tint = DEFAULT_TINT;
+    spinButton.eventMode = "static";
+    checkWin(reels);
+}
+
+function setReelsToDefault(reels) {
+    reels.forEach(reel => {
+        reel.symbols.forEach(symbol => {
+            symbol.tint = DEFAULT_TINT;
+        })
+    })
+}
