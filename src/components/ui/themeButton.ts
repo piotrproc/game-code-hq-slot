@@ -26,8 +26,11 @@ export function addChangeThemeButton(app: Application){
 
 function changeTheme() {
     const theme = getThemeName();
-    const oppositeTheme = theme === POSSIBLE_THEMES[0] ? POSSIBLE_THEMES[1] : POSSIBLE_THEMES[0];
+    const currentThemeIndex = POSSIBLE_THEMES.indexOf(theme);
+    const nextThemeIndex = (currentThemeIndex + 1) % POSSIBLE_THEMES.length;
+
+    const nextTheme = POSSIBLE_THEMES[nextThemeIndex];
 
     window.location.href
-        = location.protocol + '//' + location.host + location.pathname + "?theme=" + oppositeTheme;
+        = location.protocol + '//' + location.host + location.pathname + "?theme=" + nextTheme;
 }
