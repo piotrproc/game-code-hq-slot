@@ -5,8 +5,6 @@ import { betlineGraphics, spinWin, totalWin } from "../states.ts";
 
 export function checkWin(app: Application, config, reels, winElements) {
 
-    spinWin.value = 0;
-
     const outcomeReels = reels.map((reel, indexY) => {
         return reel.symbols.filter((symbol) => {
             return Math.round(symbol.x) > -75 && Math.round(symbol.x) < 375;

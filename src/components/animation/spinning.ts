@@ -1,14 +1,14 @@
 import { checkWin } from "../win/winChecker.ts";
-import { DEFAULT_TINT, DIM_TINT } from "../consts.ts";
+import { DEFAULT_TINT, DIM_TINT, WIN_TEXT } from "../consts.ts";
 import { Application } from "pixi.js";
-import { betlineGraphics, isRunning } from "../states.ts";
+import { betlineGraphics, isRunning, spinWin } from "../states.ts";
 
 // Function to start playing.
 export function startPlay(app:Application, config, reels, tweenTo, spinButton, winElements) {
     if (isRunning.value) {
         return;
     }
-    onStartSpin(reels, spinButton);
+    onStartSpin(reels, spinButton, winElements);
 
     for (let i = 0; i < reels.length; i++) {
         const r = reels[i];
@@ -20,7 +20,7 @@ export function startPlay(app:Application, config, reels, tweenTo, spinButton, w
     }
 }
 
-function onStartSpin(reels, spinButton) {
+function onStartSpin(reels, spinButton, winElements) {
     setReelsToDefault(reels);
     isRunning.value = true;
     spinButton.tint = DIM_TINT;
@@ -29,6 +29,8 @@ function onStartSpin(reels, spinButton) {
         graphic.destroy();
     })
     betlineGraphics.value = [];
+    spinWin.value = 0;
+    winElements.winText.text = WIN_TEXT + spinWin.value;
 }
 
 // Backout function from tweenjs.
