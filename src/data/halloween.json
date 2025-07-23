@@ -22,10 +22,6 @@
       "payout": 20
     }
   ],
-  "reelSettings": {
-    "spinDuration": 2000,
-    "spinSpeed": 1.5
-  },
   "background": {
     "color": "#1099bb",
     "spinButton": "/assets/halloween/spinButton.png"

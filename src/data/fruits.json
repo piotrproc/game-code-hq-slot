@@ -27,10 +27,6 @@
       "payout": 25
     }
   ],
-  "reelSettings": {
-    "spinDuration": 2000,
-    "spinSpeed": 1.5
-  },
   "background": {
     "color": "#06a159",
     "spinButton": "/assets/fruits/spinButton.png"
