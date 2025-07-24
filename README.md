@@ -18,7 +18,8 @@ npm run dev
     - Use can change the theme:
         - by clicking the ⟳ button
         - by changing URL e.g. add this to URL to have fruits theme `?theme=fruits`
-    - Configs of the themes can be found in `/src/data` folder 
+    - Configs of the themes can be found in `/src/data` folder
+- Sound is added by Howler package
 
 ## Notes
 
