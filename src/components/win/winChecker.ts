@@ -23,8 +23,8 @@ export function checkWin(app: Application, config, reels, winElements: WinElemen
             [
                 outcomeReels[line[0].x][line[0].y],
                 outcomeReels[line[1].x][line[1].y],
-                outcomeReels[line[2].x][line[2].y]]
-            , winElements);
+                outcomeReels[line[2].x][line[2].y]
+            ], winElements);
     })
 }
 
