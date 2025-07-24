@@ -11,13 +11,15 @@ import { gameState } from "./components/states.ts";
 
 (async () => {
     const config = getThemeConfig();
+
     // Create a new application
     const app = new Application<HTMLCanvasElement>({
         background: config.background.color,
-        width: window.innerWidth,
-        height: window.innerHeight,
+        width: window.innerWidth < 1200 ? 1200 : window.innerWidth,
+        height: window.innerHeight < 1050 ? 1050 : window.innerHeight,
         resolution: 1,
     });
+
 
     // Append the application canvas to the document body
     document.body.appendChild(app.view);
