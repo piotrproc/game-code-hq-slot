@@ -4,6 +4,7 @@ import { Application, Sprite } from "pixi.js";
 import { balance, betlineGraphics, isRunning, spinWin } from "../states.ts";
 import { WinElements } from "../win/winHolder.ts";
 import { disableSpinButtonIfNoMoney } from "../ui/spinButton.ts";
+import { ReelProperties } from "./reels.ts";
 
 // Function to start playing.
 export function startPlay(app: Application, config, reels, tweenTo, spinButton: Sprite, winElements: WinElements) {
@@ -23,7 +24,7 @@ export function startPlay(app: Application, config, reels, tweenTo, spinButton: 
     }
 }
 
-function onStartSpin(reels, spinButton: Sprite, winElements: WinElements) {
+function onStartSpin(reels: ReelProperties[], spinButton: Sprite, winElements: WinElements) {
     setReelsToDefault(reels);
     isRunning.value = true;
     spinButton.tint = DIM_TINT;
@@ -47,7 +48,7 @@ function backout(amount) {
 }
 
 // Reels done handler.
-function reelsComplete(app: Application, config, reels, spinButton: Sprite, winElements: WinElements) {
+function reelsComplete(app: Application, config, reels: ReelProperties[], spinButton: Sprite, winElements: WinElements) {
     isRunning.value = false;
     spinButton.tint = DEFAULT_TINT;
     spinButton.eventMode = "static";
@@ -57,7 +58,7 @@ function reelsComplete(app: Application, config, reels, spinButton: Sprite, winE
     disableSpinButtonIfNoMoney(spinButton);
 }
 
-function setReelsToDefault(reels) {
+function setReelsToDefault(reels: ReelProperties[]) {
     reels.forEach(reel => {
         reel.symbols.forEach(symbol => {
             symbol.tint = DEFAULT_TINT;

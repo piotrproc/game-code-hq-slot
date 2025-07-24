@@ -2,7 +2,7 @@ import { Application, Sprite } from "pixi.js";
 import { balance } from "../states.ts";
 import { DIM_TINT, SPIN_COST } from "../consts.ts";
 
-export function addSpinButton(app: Application) {
+export function addSpinButton(app: Application): Sprite {
     const spinButton = Sprite.from("spinButton");
 
     styleSpinButton(app, spinButton);

@@ -1,6 +1,6 @@
 // Build the reels
 import { Application, BlurFilter, Container, DisplayObject, Sprite, Texture } from "pixi.js";
-import { REEL_WIDTH, SYMBOL_SIZE } from "../consts.ts";
+import { NUMBER_OF_REELS, NUMBER_OF_SYMBOLS_ON_REELS, REEL_WIDTH, SYMBOL_SIZE } from "../consts.ts";
 
 export type ReelProperties = {
     container: Container<DisplayObject>,
@@ -10,11 +10,11 @@ export type ReelProperties = {
     blur: BlurFilter,
 };
 
-export function addReels(app: Application, slotTextures) {
+export function addReels(app: Application, slotTextures: Texture[]) {
     const reels: ReelProperties[] = [];
     const reelContainer = new Container();
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < NUMBER_OF_REELS; i++) {
         const rc = new Container();
 
         rc.y = i * REEL_WIDTH;
@@ -33,7 +33,7 @@ export function addReels(app: Application, slotTextures) {
         rc.filters = [reel.blur];
 
         // Build the symbols
-        for (let j = 0; j < 5; j++) {
+        for (let j = 0; j < NUMBER_OF_SYMBOLS_ON_REELS + 2; j++) {
             const symbol = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
             // Scale the symbol to fit symbol area.
 
