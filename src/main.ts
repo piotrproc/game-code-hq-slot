@@ -7,6 +7,7 @@ import { addKeyboardHandler, getThemeConfig } from "./components/utils.ts";
 import { addWinHolderElements } from "./components/win/winHolder.ts";
 import { addChangeThemeButton } from "./components/ui/themeButton.ts";
 import { startPlay } from "./components/animation/spinning.ts";
+import { gameState } from "./components/states.ts";
 
 (async () => {
     const config = getThemeConfig();
@@ -31,6 +32,7 @@ import { startPlay } from "./components/animation/spinning.ts";
         symbol => Texture.from(symbol.src)
     )
 
+    gameState.value = "Idle";
     const {reels} = addReels(app, slotTextures);
     const winElements = addWinHolderElements(app);
     const tweenTo = addTween(app);

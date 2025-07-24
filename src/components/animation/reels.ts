@@ -1,6 +1,7 @@
 // Build the reels
 import { Application, BlurFilter, Container, DisplayObject, Sprite, Texture } from "pixi.js";
 import { NUMBER_OF_REELS, NUMBER_OF_SYMBOLS_ON_REELS, REEL_WIDTH, SYMBOL_SIZE } from "../consts.ts";
+import { getRandomInt } from "../random.ts";
 
 export type ReelProperties = {
     container: Container<DisplayObject>,
@@ -34,7 +35,7 @@ export function addReels(app: Application, slotTextures: Texture[]) {
 
         // Build the symbols
         for (let j = 0; j < NUMBER_OF_SYMBOLS_ON_REELS + 2; j++) {
-            const symbol = new Sprite(slotTextures[Math.floor(Math.random() * slotTextures.length)]);
+            const symbol = new Sprite(slotTextures[getRandomInt(slotTextures.length)]);
             // Scale the symbol to fit symbol area.
 
             symbol.y = Math.round((SYMBOL_SIZE - symbol.height) / 2);
@@ -77,7 +78,7 @@ export function addReelsSpinningHandler(app: Application, reels: ReelProperties[
                 if (s.x < 0 && prevy > SYMBOL_SIZE) {
                     // Detect going over and swap a texture.
                     // This should in proper product be determined from some logical reel.
-                    s.texture = slotTextures[Math.floor(Math.random() * slotTextures.length)];
+                    s.texture = slotTextures[getRandomInt(slotTextures.length)];
                     s.scale.x = s.scale.y = Math.min(SYMBOL_SIZE / s.texture.width, SYMBOL_SIZE / s.texture.height);
                     s.y = Math.round((SYMBOL_SIZE - s.height) / 2);
                 }

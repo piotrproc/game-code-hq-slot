@@ -1,17 +1,18 @@
 import { checkWin } from "../win/winChecker.ts";
 import { BALANCE_TEXT, DEFAULT_TINT, DIM_TINT, SPIN_COST, WIN_TEXT } from "../consts.ts";
 import { Application, Sprite } from "pixi.js";
-import { balance, betlineGraphics, isRunning, spinWin } from "../states.ts";
+import { balance, betlineGraphics, gameState, spinWin } from "../states.ts";
 import { WinElements } from "../win/winHolder.ts";
 import { disableSpinButtonIfNoMoney } from "../ui/spinButton.ts";
 import { ReelProperties } from "./reels.ts";
 import { playSpinSound } from "../music.ts";
+import { getRandomInt } from "../random.ts";
 
 // Function to start playing.
 export function startPlay(app: Application, config, reels, tweenTo, spinButton: Sprite, winElements: WinElements) {
     playSpinSound(config);
 
-    if (isRunning.value) {
+    if (gameState.value !== "Idle") {
         return;
     }
 
@@ -19,7 +20,7 @@ export function startPlay(app: Application, config, reels, tweenTo, spinButton: 
 
     for (let i = 0; i < reels.length; i++) {
         const r = reels[i];
-        const extra = Math.floor(Math.random() * 3);
+        const extra = getRandomInt(3);
         const target = r.position + 10 + i * 5 + extra;
         const time = 2500 + i * 600 + extra * 600;
 
@@ -29,7 +30,7 @@ export function startPlay(app: Application, config, reels, tweenTo, spinButton: 
 
 function onStartSpin(reels: ReelProperties[], spinButton: Sprite, winElements: WinElements) {
     setReelsToDefault(reels);
-    isRunning.value = true;
+    gameState.value = "Spin";
     spinButton.tint = DIM_TINT;
     spinButton.eventMode = "none";
     betlineGraphics.value.forEach(graphic => {
@@ -52,13 +53,14 @@ function backout(amount) {
 
 // Reels done handler.
 function reelsComplete(app: Application, config, reels: ReelProperties[], spinButton: Sprite, winElements: WinElements) {
-    isRunning.value = false;
+    gameState.value = "Win";
     spinButton.tint = DEFAULT_TINT;
     spinButton.eventMode = "static";
 
     checkWin(app, config, reels, winElements);
 
     disableSpinButtonIfNoMoney(spinButton);
+    gameState.value = "Idle"
 }
 
 function setReelsToDefault(reels: ReelProperties[]) {
