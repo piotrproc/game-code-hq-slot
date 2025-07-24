@@ -10,8 +10,8 @@ export function checkWin(app: Application, config, reels, winElements) {
             return Math.round(symbol.x) > -75 && Math.round(symbol.x) < 375;
         }).sort(comparisonFunction)
             .map((symbol, indexX) => {
-                symbol.myX = indexX;
-                symbol.myY = indexY;
+                symbol.reelX = indexX;
+                symbol.reelY = indexY;
                 return symbol;
             });
     })
@@ -51,9 +51,9 @@ function drawBetline(app, sprite1, sprite2, sprite3) {
 
     graphics.beginFill();
     graphics.lineStyle(4, 0xffffff);
-    graphics.moveTo(LEFT_TOP_CORNER.x + (sprite1.myX * SYMBOL_SIZE), LEFT_TOP_CORNER.y + (sprite1.myY * SYMBOL_SIZE));
-    graphics.lineTo(LEFT_TOP_CORNER.x + (sprite2.myX * SYMBOL_SIZE), LEFT_TOP_CORNER.y + (sprite2.myY * SYMBOL_SIZE));
-    graphics.lineTo(LEFT_TOP_CORNER.x + (sprite3.myX * SYMBOL_SIZE), LEFT_TOP_CORNER.y + (sprite3.myY * SYMBOL_SIZE));
+    graphics.moveTo(LEFT_TOP_CORNER.x + (sprite1.reelX * SYMBOL_SIZE), LEFT_TOP_CORNER.y + (sprite1.reelY * SYMBOL_SIZE));
+    graphics.lineTo(LEFT_TOP_CORNER.x + (sprite2.reelX * SYMBOL_SIZE), LEFT_TOP_CORNER.y + (sprite2.reelY * SYMBOL_SIZE));
+    graphics.lineTo(LEFT_TOP_CORNER.x + (sprite3.reelX * SYMBOL_SIZE), LEFT_TOP_CORNER.y + (sprite3.reelY * SYMBOL_SIZE));
     graphics.endFill();
 
     app.stage.addChild(graphics);
