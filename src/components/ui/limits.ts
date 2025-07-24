@@ -2,7 +2,7 @@ import { Application, Graphics } from "pixi.js";
 import { SYMBOL_SIZE } from "../consts.ts";
 
 export function addLimitsToGame(app: Application) {
-    const margin = (app.screen.height - SYMBOL_SIZE * 2) / 2;
+    const margin = (app.screen.width - SYMBOL_SIZE * 3) / 2;
     const COLOR = 0x0;
 
     const left = new Graphics().beginFill(COLOR).drawRect(0, 0, margin, app.screen.height).endFill();

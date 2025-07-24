@@ -8,12 +8,12 @@ export type WinElements = {
 
 export function addWinHolderElements(app: Application): WinElements {
     return {
-        spinWinText: addWinHolder(app),
-        balanceText: addBalance(app)
+        spinWinText: addSpinWinHolder(app),
+        balanceText: addBalanceHolder(app)
     }
 }
 
-function addBalance(app: Application): Text {
+function addBalanceHolder(app: Application): Text {
     const balanceText = new Text(BALANCE_TEXT + DEFAULT_BALANCE);
 
     balanceText.anchor.set(0.5);
@@ -24,7 +24,7 @@ function addBalance(app: Application): Text {
     return balanceText;
 }
 
-function addWinHolder(app: Application): Text {
+function addSpinWinHolder(app: Application): Text {
     const spinWinText = new Text(WIN_TEXT + '0');
 
     spinWinText.anchor.set(0.5);
