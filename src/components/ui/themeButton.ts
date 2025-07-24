@@ -20,7 +20,7 @@ export function addChangeThemeButton(app: Application): Text {
 function styleThemeButton(app: Application, themeButton: Text) {
     themeButton.anchor.set(0.5);
     themeButton.x = app.screen.width / 2;
-    themeButton.y = app.screen.height / 8;
+    themeButton.y = app.screen.height / 10;
 
     themeButton.eventMode = 'static';
     themeButton.cursor = 'pointer';

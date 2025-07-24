@@ -2,6 +2,7 @@
 import { Application, BlurFilter, Container, DisplayObject, Sprite, Texture } from "pixi.js";
 import { NUMBER_OF_REELS, NUMBER_OF_SYMBOLS_ON_REELS, REEL_WIDTH, SYMBOL_SIZE } from "../consts.ts";
 import { getRandomInt } from "../random.ts";
+import { getLeftTopCornerPos } from "../utils.ts";
 
 export type ReelProperties = {
     container: Container<DisplayObject>,
@@ -50,8 +51,8 @@ export function addReels(app: Application, slotTextures: Texture[]) {
     app.stage.addChild(reelContainer);
 
     // Build top & bottom covers and position reelContainer
-    reelContainer.y = (app.screen.height - SYMBOL_SIZE * 3) / 2;
-    reelContainer.x = Math.round((app.screen.width - 2 * SYMBOL_SIZE) / 2);
+    reelContainer.y = getLeftTopCornerPos(app).y;
+    reelContainer.x = getLeftTopCornerPos(app).x;
 
     return {reels};
 }

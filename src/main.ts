@@ -14,8 +14,9 @@ import { gameState } from "./components/states.ts";
     // Create a new application
     const app = new Application<HTMLCanvasElement>({
         background: config.background.color,
-        height: 1050,
-        width: 1200,
+        width: window.innerWidth,
+        height: window.innerHeight,
+        resolution: 1,
     });
 
     // Append the application canvas to the document body

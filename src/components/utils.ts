@@ -1,7 +1,8 @@
-import { POSSIBLE_THEMES } from "./consts.ts";
+import { POSSIBLE_THEMES, SYMBOL_SIZE } from "./consts.ts";
 
 import fruitsConfig from '../data/fruits.json';
 import halloweenConfig from '../data/halloween.json';
+import { Application } from "pixi.js";
 
 export function getThemeConfig() {
     const theme = getThemeName();
@@ -26,4 +27,11 @@ export function addKeyboardHandler(handler: () => void) {
             handler();
         }
     });
+}
+
+export function getLeftTopCornerPos(app: Application) {
+    return {
+        x: Math.round((app.screen.width - 2 * SYMBOL_SIZE) / 2),
+        y: (app.screen.height - SYMBOL_SIZE * 3) / 2,
+    };
 }

@@ -1,10 +1,11 @@
-import { BALANCE_TEXT, BETLINES, DIM_TINT, LEFT_TOP_CORNER, SYMBOL_SIZE, WIN_TEXT } from "../consts.ts";
+import { BALANCE_TEXT, BETLINES, DIM_TINT, SYMBOL_SIZE, WIN_TEXT } from "../consts.ts";
 import { getPayout } from "./getPayout.ts";
 import { Application, Graphics, Sprite } from "pixi.js";
 import { balance, betlineGraphics, spinWin } from "../states.ts";
 import { ReelProperties } from "../animation/reels.ts";
 import { WinElements } from "./winHolder.ts";
 import { playWinSound } from "../music.ts";
+import { getLeftTopCornerPos } from "../utils.ts";
 
 export function checkWin(app: Application, config, reels, winElements: WinElements) {
 
@@ -72,11 +73,13 @@ function drawBetline(app: Application, sprites) {
 
     graphics.beginFill();
     graphics.lineStyle(4, 0xffffff);
-    graphics.moveTo(LEFT_TOP_CORNER.x + (sprites[0].reelX * SYMBOL_SIZE), LEFT_TOP_CORNER.y + (sprites[0].reelY * SYMBOL_SIZE));
+
+    const leftTopCornerPos = getLeftTopCornerPos(app);
+    graphics.moveTo(leftTopCornerPos.x + (sprites[0].reelX * SYMBOL_SIZE), leftTopCornerPos.y + (sprites[0].reelY * SYMBOL_SIZE));
 
     sprites.forEach((sprite, index) => {
         if (index > 0) {
-            graphics.lineTo(LEFT_TOP_CORNER.x + (sprite.reelX * SYMBOL_SIZE), LEFT_TOP_CORNER.y + (sprite.reelY * SYMBOL_SIZE));
+            graphics.lineTo(leftTopCornerPos.x + (sprite.reelX * SYMBOL_SIZE), leftTopCornerPos.y + (sprite.reelY * SYMBOL_SIZE));
         }
     })
     graphics.endFill();

@@ -11,7 +11,6 @@ export const BALANCE_TEXT = "Balance: ";
 export const NUMBER_OF_REELS = 3;
 export const NUMBER_OF_SYMBOLS_ON_REELS = 3;
 
-export const LEFT_TOP_CORNER = {x: 450, y: 300}
 export const BETLINES = [
     [{x: 0, y: 0}, {x: 0, y: 1}, {x: 0, y: 2}],
     [{x: 1, y: 0}, {x: 1, y: 1}, {x: 1, y: 2}],
