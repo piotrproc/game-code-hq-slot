@@ -25,5 +25,5 @@ npm run dev
 
 - Game is deployed by vercel:
     - https://game-code-hq-slot-git-main-piotr-procs-projects.vercel.app/
-- Game has a still size - you need to adjust resolution of your browser to play the game
+- Game has a fixed size - you need to adjust resolution of your browser to play the game
     - Game is not supported on mobile at the time    
