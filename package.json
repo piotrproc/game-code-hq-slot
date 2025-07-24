@@ -10,6 +10,7 @@
     "dev": "vite"
   },
   "dependencies": {
+    "howler": "^2.2.4",
     "pixi.js": "7.4.2"
   },
   "devDependencies": {

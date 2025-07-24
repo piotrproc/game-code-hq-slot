@@ -4,6 +4,7 @@ import { Application, Graphics, Sprite } from "pixi.js";
 import { balance, betlineGraphics, spinWin } from "../states.ts";
 import { ReelProperties } from "../animation/reels.ts";
 import { WinElements } from "./winHolder.ts";
+import { playWinSound } from "../music.ts";
 
 export function checkWin(app: Application, config, reels, winElements: WinElements) {
 
@@ -62,6 +63,7 @@ function checkBetlineWin(app: Application, config, sprites: Sprite[], winElement
         winElements.balanceText.text = BALANCE_TEXT + balance.value;
 
         drawBetline(app, sprites);
+        playWinSound(config);
     }
 }
 

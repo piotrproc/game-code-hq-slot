@@ -43,5 +43,5 @@ import { startPlay } from "./components/animation/spinning.ts";
     addChangeThemeButton(app);
     addLimitsToGame(app);
     addReelsSpinningHandler(app, reels, slotTextures);
-    addKeyboardHandler(() => startPlay(app, config, reels, tweenTo, spinButton, winElements))
+    addKeyboardHandler(() => startPlay(app, config, reels, tweenTo, spinButton, winElements));
 })();

@@ -5,9 +5,12 @@ import { balance, betlineGraphics, isRunning, spinWin } from "../states.ts";
 import { WinElements } from "../win/winHolder.ts";
 import { disableSpinButtonIfNoMoney } from "../ui/spinButton.ts";
 import { ReelProperties } from "./reels.ts";
+import { playSpinSound } from "../music.ts";
 
 // Function to start playing.
 export function startPlay(app: Application, config, reels, tweenTo, spinButton: Sprite, winElements: WinElements) {
+    playSpinSound(config);
+
     if (isRunning.value) {
         return;
     }
