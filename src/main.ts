@@ -1,12 +1,12 @@
 import { Application, Assets, Texture, } from 'pixi.js';
-import { addSpinButton } from "./components/ui/spinButton.ts";
-import { disableSpinButtonIfNoMoney, startPlay } from "./components/animation/spinning.ts";
+import { addSpinButton, disableSpinButtonIfNoMoney } from "./components/ui/spinButton.ts";
 import { addReels, addReelsSpinningHandler } from "./components/animation/reels.ts";
 import { addTween } from "./components/animation/tween.ts";
 import { addLimitsToGame } from "./components/ui/limits.ts";
 import { addKeyboardHandler, getThemeConfig } from "./components/utils.ts";
 import { addWinHolderElements } from "./components/win/winHolder.ts";
 import { addChangeThemeButton } from "./components/ui/themeButton.ts";
+import { startPlay } from "./components/animation/spinning.ts";
 
 (async () => {
     const config = getThemeConfig();

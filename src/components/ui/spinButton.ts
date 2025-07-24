@@ -1,4 +1,6 @@
 import { Application, Sprite } from "pixi.js";
+import { balance } from "../states.ts";
+import { DIM_TINT, SPIN_COST } from "../consts.ts";
 
 export function addSpinButton(app: Application) {
     const spinButton = Sprite.from("spinButton");
@@ -21,4 +23,11 @@ function styleSpinButton(app: Application, spinButton: Sprite) {
 
     spinButton.eventMode = 'static';
     spinButton.cursor = 'pointer';
+}
+
+export function disableSpinButtonIfNoMoney(spinButton: Sprite) {
+    if (balance.value < SPIN_COST) {
+        spinButton.tint = DIM_TINT;
+        spinButton.eventMode = "none";
+    }
 }

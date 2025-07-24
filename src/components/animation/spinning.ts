@@ -3,6 +3,7 @@ import { BALANCE_TEXT, DEFAULT_TINT, DIM_TINT, SPIN_COST, WIN_TEXT } from "../co
 import { Application, Sprite } from "pixi.js";
 import { balance, betlineGraphics, isRunning, spinWin } from "../states.ts";
 import { WinElements } from "../win/winHolder.ts";
+import { disableSpinButtonIfNoMoney } from "../ui/spinButton.ts";
 
 // Function to start playing.
 export function startPlay(app: Application, config, reels, tweenTo, spinButton: Sprite, winElements: WinElements) {
@@ -54,13 +55,6 @@ function reelsComplete(app: Application, config, reels, spinButton: Sprite, winE
     checkWin(app, config, reels, winElements);
 
     disableSpinButtonIfNoMoney(spinButton);
-}
-
-export function disableSpinButtonIfNoMoney(spinButton: Sprite) {
-    if (balance.value < SPIN_COST) {
-        spinButton.tint = DIM_TINT;
-        spinButton.eventMode = "none";
-    }
 }
 
 function setReelsToDefault(reels) {
