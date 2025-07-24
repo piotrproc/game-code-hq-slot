@@ -52,14 +52,14 @@ function reelsComplete(app, config, reels, spinButton, winElements) {
 
     checkWin(app, config, reels, winElements);
 
-    if (balance.value < SPIN_COST) {
-        disableSpinButton(spinButton);
-    }
+    disableSpinButtonIfNoMoney(spinButton);
 }
 
-function disableSpinButton(spinButton) {
-    spinButton.tint = DIM_TINT;
-    spinButton.eventMode = "none";
+export function disableSpinButtonIfNoMoney(spinButton) {
+    if (balance.value < SPIN_COST) {
+        spinButton.tint = DIM_TINT;
+        spinButton.eventMode = "none";
+    }
 }
 
 function setReelsToDefault(reels) {

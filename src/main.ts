@@ -1,6 +1,6 @@
 import { Application, Assets, Texture, } from 'pixi.js';
 import { addSpinButton } from "./components/ui/spinButton.ts";
-import { startPlay } from "./components/animation/spinning.ts";
+import { disableSpinButtonIfNoMoney, startPlay } from "./components/animation/spinning.ts";
 import { addReels, addReelsSpinningHandler } from "./components/animation/reels.ts";
 import { addTween } from "./components/animation/tween.ts";
 import { addLimitsToGame } from "./components/ui/limits.ts";
@@ -38,6 +38,7 @@ import { addChangeThemeButton } from "./components/ui/themeButton.ts";
     spinButton.addListener('pointerdown', () => {
         startPlay(app, config, reels, tweenTo, spinButton, winElements);
     });
+    disableSpinButtonIfNoMoney(spinButton);
 
     addChangeThemeButton(app);
     addLimitsToGame(app);
