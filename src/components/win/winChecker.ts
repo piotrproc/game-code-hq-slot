@@ -1,9 +1,11 @@
 import { BALANCE_TEXT, BETLINES, DIM_TINT, LEFT_TOP_CORNER, SYMBOL_SIZE, WIN_TEXT } from "../consts.ts";
 import { getPayout } from "./getPayout.ts";
-import { Application, Graphics } from "pixi.js";
+import { Application, Graphics, Sprite } from "pixi.js";
 import { balance, betlineGraphics, spinWin } from "../states.ts";
+import { ReelProperties } from "../animation/reels.ts";
+import { WinElements } from "./winHolder.ts";
 
-export function checkWin(app: Application, config, reels, winElements) {
+export function checkWin(app: Application, config, reels, winElements: WinElements) {
 
     const outcomeReels = reels.map((reel, indexY) => {
         return reel.symbols
@@ -26,7 +28,7 @@ export function checkWin(app: Application, config, reels, winElements) {
     })
 }
 
-function dropExtremeSymbols(reel, symbol) {
+function dropExtremeSymbols(reel: ReelProperties, symbol: Sprite) {
     let minValue = 0;
     let maxValue = 0;
 
@@ -42,11 +44,11 @@ function dropExtremeSymbols(reel, symbol) {
     return symbol.x > minValue && symbol.x < maxValue;
 }
 
-function comparisonFunction(a, b) {
+function comparisonFunction(a: Sprite, b: Sprite) {
     return a.x - b.x;
 }
 
-function checkBetlineWin(app, config, sprites, winElements) {
+function checkBetlineWin(app: Application, config, sprites: Sprite[], winElements: WinElements) {
     const isWin = sprites.every(sprite => sprite && sprite.texture.textureCacheIds[1] === sprites[0].texture.textureCacheIds[1])
 
     if (isWin) {
@@ -63,7 +65,7 @@ function checkBetlineWin(app, config, sprites, winElements) {
     }
 }
 
-function drawBetline(app, sprites) {
+function drawBetline(app: Application, sprites) {
     const graphics = new Graphics();
 
     graphics.beginFill();

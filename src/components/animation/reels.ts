@@ -1,5 +1,5 @@
 // Build the reels
-import { Application, BlurFilter, Container, DisplayObject, Sprite } from "pixi.js";
+import { Application, BlurFilter, Container, DisplayObject, Sprite, Texture } from "pixi.js";
 import { REEL_WIDTH, SYMBOL_SIZE } from "../consts.ts";
 
 export type ReelProperties = {
@@ -55,7 +55,7 @@ export function addReels(app: Application, slotTextures) {
     return {reels};
 }
 
-export function addReelsSpinningHandler(app: Application, reels, slotTextures) {
+export function addReelsSpinningHandler(app: Application, reels: ReelProperties[], slotTextures: Texture[]) {
     // Listen for animate update.
     app.ticker.add(() => {
         // Update the slots.

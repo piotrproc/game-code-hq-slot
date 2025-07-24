@@ -1,10 +1,11 @@
 import { checkWin } from "../win/winChecker.ts";
 import { BALANCE_TEXT, DEFAULT_TINT, DIM_TINT, SPIN_COST, WIN_TEXT } from "../consts.ts";
-import { Application } from "pixi.js";
+import { Application, Sprite } from "pixi.js";
 import { balance, betlineGraphics, isRunning, spinWin } from "../states.ts";
+import { WinElements } from "../win/winHolder.ts";
 
 // Function to start playing.
-export function startPlay(app: Application, config, reels, tweenTo, spinButton, winElements) {
+export function startPlay(app: Application, config, reels, tweenTo, spinButton: Sprite, winElements: WinElements) {
     if (isRunning.value) {
         return;
     }
@@ -21,7 +22,7 @@ export function startPlay(app: Application, config, reels, tweenTo, spinButton, 
     }
 }
 
-function onStartSpin(reels, spinButton, winElements) {
+function onStartSpin(reels, spinButton: Sprite, winElements: WinElements) {
     setReelsToDefault(reels);
     isRunning.value = true;
     spinButton.tint = DIM_TINT;
@@ -45,7 +46,7 @@ function backout(amount) {
 }
 
 // Reels done handler.
-function reelsComplete(app, config, reels, spinButton, winElements) {
+function reelsComplete(app: Application, config, reels, spinButton: Sprite, winElements: WinElements) {
     isRunning.value = false;
     spinButton.tint = DEFAULT_TINT;
     spinButton.eventMode = "static";
@@ -55,7 +56,7 @@ function reelsComplete(app, config, reels, spinButton, winElements) {
     disableSpinButtonIfNoMoney(spinButton);
 }
 
-export function disableSpinButtonIfNoMoney(spinButton) {
+export function disableSpinButtonIfNoMoney(spinButton: Sprite) {
     if (balance.value < SPIN_COST) {
         spinButton.tint = DIM_TINT;
         spinButton.eventMode = "none";
