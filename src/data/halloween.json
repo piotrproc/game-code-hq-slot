@@ -27,7 +27,7 @@
     "spinButton": "/assets/halloween/spinButton.png"
   },
   "music": {
-    "spinSound": "https://assets.codepen.io/21542/howler-push.mp3",
-    "winSound": "https://assets.codepen.io/21542/howler-sfx-levelup.mp3"
+    "spinSound": "/audio/howler-push.mp3",
+    "winSound": "/audio/howler-sfx-levelup.mp3"
   }
 }
