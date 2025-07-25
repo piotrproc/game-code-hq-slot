@@ -1,3 +1,5 @@
+export const MIN_RESOLUTION_WIDTH = 600;
+export const MIN_RESOLUTION_HEIGHT = 900;
 export const SYMBOL_SIZE = 150;
 export const REEL_WIDTH = 160;
 export const POSSIBLE_THEMES = ["halloween", "fruits"]

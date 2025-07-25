@@ -1,4 +1,4 @@
-import { Application, Assets, Texture, } from 'pixi.js';
+import { Application, Assets, Texture, utils, } from 'pixi.js';
 import { addSpinButton, disableSpinButtonIfNoMoney } from "./components/ui/spinButton.ts";
 import { addReels, addReelsSpinningHandler } from "./components/animation/reels.ts";
 import { addTween } from "./components/animation/tween.ts";
@@ -8,6 +8,7 @@ import { addWinHolderElements } from "./components/win/winHolder.ts";
 import { addChangeThemeButton } from "./components/ui/themeButton.ts";
 import { startPlay } from "./components/animation/spinning.ts";
 import { gameState } from "./components/states.ts";
+import { MIN_RESOLUTION_HEIGHT, MIN_RESOLUTION_WIDTH } from "./components/consts.ts";
 
 (async () => {
     const config = getThemeConfig();
@@ -15,11 +16,14 @@ import { gameState } from "./components/states.ts";
     // Create a new application
     const app = new Application<HTMLCanvasElement>({
         background: config.background.color,
-        width: window.innerWidth < 1200 ? 1200 : window.innerWidth,
-        height: window.innerHeight < 1050 ? 1050 : window.innerHeight,
+        width: (window.innerWidth < MIN_RESOLUTION_WIDTH && !utils.isMobile.any) ? MIN_RESOLUTION_WIDTH : window.innerWidth,
+        height: (window.innerHeight < MIN_RESOLUTION_HEIGHT && !utils.isMobile.any) ? MIN_RESOLUTION_HEIGHT : window.innerHeight,
         resolution: 1,
     });
 
+    if(utils.isMobile.any && window.innerHeight < window.innerWidth){
+        alert("Please use Portrait!");
+    }
 
     // Append the application canvas to the document body
     document.body.appendChild(app.view);
